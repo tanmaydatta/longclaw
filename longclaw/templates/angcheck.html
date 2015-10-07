@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+    <title>SIGN IN</title>
+  <script src='/static/jquery.min.js'></script>
+  <script src="/static/semantic/dist/semantic.min.js"></script>
+  <!-- // <script src='/static/captcha.js'></script> -->
+  <!-- // <script src='/static/signin.js'></script> -->
+  
+
+  </head>
+
+  <body >
+
+   <div >
+      <label>Name:</label>  
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+      <h1>Hello {{yourName|angular}}  {{ uname|angular}}</h1>
+      <div class="ui grid container field">
+          <input type="text" ng-model="uname" placeholder="Username">
+        </div>
+        <div class="ui grid container field">
+          <input type="password" name="passwd" ng-model="passw" placeholder="Password">
+        </div>
+        {{ uname}} {{ passw}}
+    </div>
+
+    
+  </body>
+  <script src="/static/angular.min.js"></script>
+</html>
+<!-- 333283916693071 -->  

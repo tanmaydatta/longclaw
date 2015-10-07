@@ -1,0 +1,61 @@
+{% extends "base_profile.html" %}
+{% block body %}
+  <div  class="ui padded clear grid form">
+    <div class=" twelve wide column">
+      <h1>
+      <a href="/profile/{{username}}" class='item'>
+        {{username}}
+      </a>
+      </h1>
+      <div class="ui form" style="color:black;font-size:16px">
+        <ul>
+          <li >
+            <div id="year">
+              <i class="book icon"></i>
+              <span>Year: 3rd Year</span>
+            </div>
+          </li>
+          <li>
+            <div id="college_rating">
+              <i class="code icon"></i>
+              <span>College Rating: 1500</span>
+            </div>
+          </li>
+          <li>
+            <div id="codechef_rating">
+              <i class="code icon"></i>
+              <span>Codechef Rating: 1500</span>
+            </div>
+          </li>
+          <li>
+            <div id="codeforces_rating">
+              <i class="code icon"></i>
+              <span>Codeforces Rating: 1500</span>
+            </div>
+          </li>
+          <li>
+            <div id="email">
+              <i class="mail outline icon"></i>
+              <span id="email_id">tanmaydatta@gmail.com</span>
+            </div>
+          </li>
+          <li>
+            <div class="item">
+              <div class="ui blue medium horizontal label">Contribution:</div>
+              <div class="ui medium label">{{upvotes}}
+                <i class="thumbs outline up icon"></i>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="ui vertical divider">      </div> -->
+    <div class="four wide center aligned column">
+      <img id="image_pad" class="ui medium circular image" src="{{pic}}">
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('#overview_tab').addClass('active');
+  </script>
+{% endblock %}

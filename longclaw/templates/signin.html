@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SIGN IN</title>
+    <script src="/static/jquery.min.js"></script>
+  <script src='/static/angular.min.js'></script>
+  <script src='/static/angular-cookies.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
+  <script src="/static/semantic/dist/semantic.min.js"></script>
+  <!-- // <script src='/static/captcha.js'></script> -->
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+  </head>
+  <body ng-app="sign_in" >
+    <div class="ui container" style="margin-left:30%;margin-right:30%;margin-top:5%;width:500px" >
+      <div id='form' class="ui form" ng-controller="formctrl" ng-submit="form_validate()">
+        <div class="ui grid container">
+          <h2 class="ui center dividing header" style="margin-left:17%">Sign In into an existing Account</h2><br>
+          
+        </div>
+        <div class="ui grid container field">
+          <input type="text" name="user" ng-model="uname" placeholder="Username">
+        </div>
+        <div class="ui grid container field">
+          <input type="password" name="passwd" ng-model="passwd" placeholder="Password">
+        </div>
+        <!-- {{uname|angular}} {{ passwd|angular}} -->
+        <div class="ui grid container field">
+          <div class="g-recaptcha" style="margin-left:22%" data-sitekey="6LesFgwTAAAAAFH5XjHOucUXbzcCUAc8hCzrs_KM"></div>
+        </div>
+        <div class="ui grid container">
+          <div class="ui error message"></div>
+        </div>
+        <div class="ui grid container">
+          <button class="ui primary button" style="width:100%;margin-top:2%" ng-click="form_validate()">
+          Sign In
+          </button>
+        </div>
+        <br><br>
+        <div class="ui loading grid container">
+          <button class="ui facebook button" style="width:100%" ng-click="checkLoginState()" ng-controller="signwithfb">
+          <i class="facebook icon"></i>
+          Sign In  with Facebook
+          </button>
+        </div>
+        <br><br>
+        <div class="ui grid container">
+          <h4 class="ui center dividing header" style="margin-left:30%">Don't have an Account</h4><br>
+          
+        </div>
+        <div class="ui grid container">
+          <a href="/signup" class="ui button red" style="width:100%;">
+            Sign Up
+          </a>
+        </div>
+      </div>
+      <br><br>
+      
+    </div>
+  </body>
+  <!-- // <script type="text/javascript" src='/static/signin_angular.js'></script> -->
+  <script type="text/javascript">
+  var app_id="{{app_id}}";
+  </script>
+  <script type="text/javascript" src='/static/signin.js'></script>
+</html>
+<!-- 333283916693071 -->

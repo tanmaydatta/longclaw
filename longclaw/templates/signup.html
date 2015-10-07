@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SIGN UP</title>
+    <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src='/static/angular.min.js'></script>
+    <script src='/static/angular-cookies.min.js'></script>
+    <script src="/static/semantic/dist/semantic.min.js"></script>
+    <!-- // <script src='/static/captcha.js'></script> -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    </head>
+    <body ng-app="sign_up">
+        <div class="ui container" style="margin-left:30%;margin-right:30%;margin-top:5%;width:600px">
+            <div id='form' class="ui form" ng-controller="formctrl" ng-submit="form_validate()">
+                <h2 class="ui dividing header" style="text-align: center;margin-top: 5px;">Signup For New Account</h2>
+                <br>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <input type="text" name="fname" ng-model="user.fname" placeholder="First Name">
+                        </div>
+                        <div class="field">
+                            <input type="text" name="lname" ng-model="user.lname" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="text" name="user" ng-model="user.user" placeholder="Username">
+                </div>
+                <div class="field">
+                    <input type="text" name="email" ng-model="user.email" placeholder="Email Id">
+                </div>
+                <div class="field">
+                    <input type="password" name="passwd" ng-model="user.passwd" placeholder="Password">
+                </div>
+                <div class="field">
+                    <input type="password" name="cpasswd" ng-model="user.cpasswd" placeholder="Confirm Password">
+                </div>
+                <div class="fields">
+                    <div class="six wide field">
+                        <input type="text" name="ccuser" ng-model="user.ccuser" placeholder="Codechef Username">
+                    </div>
+                    <div class="six wide field">
+                        <input type="text" name="spuser" ng-model="user.spuser" placeholder="Spoj Username">
+                    </div>
+                    <div class="six wide field">
+                        <input type="text" name="cfuser" ng-model="user.cfuser" placeholder="Codeforces Username">
+                    </div>
+                </div>
+                <h3 class="ui dividing header" style="text-align: center;margin-top: 5px;">Authenticate Webkiosk</h3>
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <input type="text" name="enroll" ng-model="user.enroll" placeholder="Enrollment No.">
+                        </div>
+                        <div class="field">
+                            <input type="password" name="wbpass" ng-model="user.wbpass" placeholder="Password">
+                        </div>
+                    </div>
+                </div>
+                <div class="g-recaptcha" style="margin-left:22%" data-sitekey="6LesFgwTAAAAAFH5XjHOucUXbzcCUAc8hCzrs_KM"></div>
+                <div class="ui error message" ></div>
+                <button class="ui primary button" style="width:100%;margin-top:2%" ng-click="form_validate()">
+                Sign Up
+                </button>
+            </div>
+            <h4 class="ui dividing header" style="text-align: center;">Already have an account ?</h4>
+            <a href="/signin" class="ui button red" style="width:100%;">
+                Sign In
+            </a>
+        </div>
+        
+    <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
+     <script src='/static/signup.js'></script>
+    </body>
+</html>

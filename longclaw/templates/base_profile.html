@@ -1,0 +1,39 @@
+{% extends "parent.html" %}
+{% block head %}
+  <style type="text/css">
+  li {
+  margin:20px;
+  }
+  ul {
+  list-style-type: none;
+  padding: 0;
+  }
+  </style>
+{% endblock %}
+{% block child %}
+  <div class="ui active tab segment" id="profile">  <!--  profile tab -->
+  <div class="ui" style="width: 100% !important; height: 43px !important; left: 312px;">
+    <div id="sec_menu" class="ui pointing  tabular large secondary  menu" >
+      <a class="item" href="/profile/{{username}}" id="overview_tab">
+        Overview
+      </a>
+      <a id="new_blog_tab" class="item" href="/blog/new/{{username}}">
+        New Blog
+      </a>
+      <a id="old_blog_tab" class="item" href="/blogs/{{username}}">
+        Old Blogs
+      </a>
+      <a id="settings_tab" class="item" href="/settings/{{username}}">
+        Settings
+      </a>
+      <a id="submissions_tab" class="item" href="/submissions/{{username}}">
+        Submissions
+      </a>
+    </div>
+  </div>
+</div>
+{% block body %}{% endblock %}
+{% endblock %}
+<!-- =================================== -->
+<!-- profile overview section -->
+

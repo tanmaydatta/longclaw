@@ -1,0 +1,52 @@
+{% extends "base_profile.html" %}
+{% block body %}
+  <div id="settings" class="ui top attached active tab segment" >
+    <div  class="ui padded clear grid">
+      <div class="six wide column">
+        <div class="ui right fluid  left icon input">
+          <i class="unlock icon"></i>
+          <input type="password" placeholder="Old Password">
+        </div><br>
+        <br>
+        <br>
+        <div class="ui  fluid left icon input">
+          <i class="lock icon"></i>
+          <input type="password" placeholder="New Password">
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="ui right fluid  left icon input">
+          <i class="lock icon"></i>
+          <input type="password" placeholder="Confirm Password">
+        </div>
+        <br><br><br><br>
+        <div class="ui blue icon medium button" style="width:100%" tabindex="0">
+          <i class="check circle outline icon"></i>
+          Save
+        </div>
+      </div>
+      <div class="three wide column"></div>
+      <div ng-controller="facebook" class="ui six wide column form" style="float:right" id="sync">
+        <div class="ui two row centered grid" >
+          <img id="image_pad" class="ui  medium circular image" style="height:290px" src="{{pic}}">        <br><br><br>
+        </div>
+        <br><br>
+        <button class="ui facebook fluid button" ng-click="checkLoginState()">
+        <i class="facebook icon"></i>
+        Sync profile with Facebook
+        </button>
+        <div class="ui horizontal divider">Or</div>
+        <div class="ui circular blue fluid icon button " tabindex="0">
+          Upload a Profile Pic
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  var app_id = "{{ app_id }}";
+  var login_user = "{{ login_user }}";
+  $('#settings_tab').addClass('active');
+  </script>
+  <script type="text/javascript" src="/static/settings.js"></script>
+{% endblock %}
