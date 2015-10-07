@@ -1,2 +1,2 @@
 # longclaw
-This is where the magic takes place
+Official website for JIIT Programming Hub.
