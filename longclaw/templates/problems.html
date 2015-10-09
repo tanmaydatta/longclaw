@@ -1,0 +1,138 @@
+{% extends "parent.html" %} {% block child %}
+<div class="ui active tab raised segment">
+    <div class="two column equal height ui grid">
+        <div class="eleven wide column ">
+            <div class="ui first center aligned raised segment">
+                <div class="ui teal label" id="name">Name</div>
+                <div class="ui center aligned raised segment">
+                    <label> Time limit per test file:
+                        <label id="time">1 second</label>
+                    </label>
+                    <br>
+                    <label> Memory limit per test file:
+                        <label id="memory">256 MB</label>
+                    </label>
+                    <br>
+                    <label> Input:
+                        <label>std input</label>
+                    </label>
+                    <br>
+                    <label> Output:
+                        <label>std output</label>
+                    </label>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui basic label">Problem Statement</div>
+            <br>
+            <br>
+            <p id="problem"> Welcome to Wikipedia, the free encyclopedia that anyone can edit. 4,977,202 articles in English Arts Biography Geography History Mathematics Science Society Technology All portals From today's featured article Burmese refugees in a camp in Thailand Burmese refugees in a camp in Thailand The Gateway Protection Programme is operated by the British government in partnership with the United Nations High Commissioner for Refugees (UNHCR) and co-funded by the European Union, offering a legal route for a quota of UNHCR-identified refugees to settle in the United Kingdom. It was proposed by the British Home Secretary, David Blunkett, in October 2001, and its legal basis was established by the Nationality, Immigration and Asylum Act 2002. The programme launched in March 2004, initially with a quota of 500 and later 750 refugees per year, but the actual number of refugees resettled in most years has been fewer than the quota permitted. As of 2012, refugees of 12 different nationalities had been resettled, with the largest groups being Iraqis, Congolese, Ethiopians, Burmese and Somalis, and 18 of the UK's 434 local authorities had participated as resettlement locations. Evaluations of the programme have praised it as having a positive impact on the reception of refugees by local communities, but have also noted the difficulties these refugees have faced in securing employment. (Full article...) Recently featured: Thunderbirds (TV series) Choiseul pigeon Halo: Reach Archive By email More featured articles... Did you know... Snowy cotinga Snowy cotinga ... that the snowy cotinga (pictured), the black-tipped cotinga and the yellow-billed cotinga, from Central and South America, are similar in
+            </p>
+            <div class="ui divider"></div>
+            <label>Input:</label>
+            <p i="input">The first line contains a single number n (1 ≤ n ≤ 2000) — the length of the permutations. The second line contains a sequence of n numbers from 1 to n — permutation p. Each number from 1 to n occurs exactly once in this line. The third line contains a sequence of n numbers from 1 to n — permutation s. Each number from 1 to n occurs once in this line.</p>
+            <div class="ui divider"></div>
+            <label>Output:</label>
+            <p i="output">The first line contains a single number n (1 ≤ n ≤ 2000) — the length of the permutations. The second line contains a sequence of n numbers from 1 to n — permutation p. Each number from 1 to n occurs exactly once in this line. The third line contains a sequence of n numbers from 1 to n — permutation s. Each number from 1 to n occurs once in this line.</p>
+            <div class="ui divider"></div>
+            <label>Sample Tests:</label>
+            <div class="ui raised segment">
+                <div class="ui raised segment" id="ip_test">
+                    <div class="ui top attached label">INPUT</div>
+                    <div class="ui raised raised segment">
+                        3 4 5
+                        <br> 2 3
+                    </div>
+                </div>
+                <div class="ui raised raised segment" id="op_test">
+                    <div class="ui top attached label">OUTPUT</div>
+                    <div class="ui raised raised segment">
+                        4
+                        <br>3
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="stick" class="five wide column">
+            <div class="ui sticky raised  container" style="min-height: 527px;">
+                <div class="ui sticky" style="width: 294px !important; height: 527px !important; left: 613.5px;">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="ui segment">
+                        <div class="ui top attached teal large label">Submit</div>
+                        <br>
+                        <br>
+                        <div class="ui fluid floating labeled icon dropdown button">
+                            <i class="large code icon"></i>
+                            <span class="text">Language</span>
+                            <div class="menu">
+                                <!-- <div class="header">
+                                    Search Issues
+                                </div> -->
+                                <!-- <div class="ui left icon input">
+                                    <i class="search icon"></i>
+                                    <input type="text" name="search" placeholder="Search...">
+                                </div> -->
+                                <!-- <div class="header">
+                                    <i class="tags icon"></i> Filter by tag
+                                </div> -->
+                                <div class="item" data-value="c">
+                                    <div class="ui red empty circular label"></div>
+                                    C
+                                </div>
+                                <div class="item" data-value="c++">
+                                    <div class="ui red empty circular label"></div>
+                                    C++
+                                </div>
+                                <div class="item" data-value="java">
+                                    <div class="ui red empty circular label"></div>
+                                    JAVA
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="field">
+                            <div class="ui action input">
+                                <input type="text" id="_attachmentName">
+                                <label for="attachmentName" class="ui icon button btn-file">Choose File
+                                    <i class="attach large icon"></i>
+                                    <input placeholder="choose file" type="file" id="attachmentName" name="attachmentName" style="display: none">
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <button class="positive ui button">Submit</button>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui top attached teal large label">Problem Tags</div>
+                        <div id="tag1" class="ui label">
+                            dp
+                        </div>
+                        <div id="tag2" class="ui label">
+                            dp
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript" src="/static/problems.js">
+</script>
+{% endblock %}
