@@ -41,7 +41,7 @@ $(document).ready(function() { /*code here*/
     });
 });
 
-var knuth = angular.module("knuth", ['ngCookies']);
+var knuth = angular.module("knuth", ['ngCookies', 'ngFileUpload']);
 knuth.controller("signout", ['$scope', '$cookies',
     function($scope, $cookies) {
       $scope.signout = function() {

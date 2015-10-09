@@ -1,8 +1,3 @@
-// This function is called when someone finishes with the Login
-// Button.  See the onlogin handler attached to it in the sample
-// code below.
-// console.log(app_id);
-
 window.fbAsyncInit = function() {
     FB.init({
         appId: app_id,
@@ -56,7 +51,7 @@ knuth.controller("facebook", ['$scope', '$http',
         }
         $scope.sync_with_facebook = function(response) {
             // FB.api('/me/picture?width=400&height=400', function(response) {
-                // console.log(response);
+            // console.log(response);
             // });
             if (response && !response.error) {
                 $scope.dataObj['access_token'] = response['authResponse']['accessToken'];
@@ -78,10 +73,36 @@ knuth.controller("facebook", ['$scope', '$http',
                             } else {
                                 location.reload();
                             }
+                        }).error(function(data) {
+                            alert('Error');
                         });
                     }
                 });
             }
+        }
+    }
+]);
+
+
+knuth.controller("settings", ['$scope', '$http', 'Upload',
+    function($scope, $http, Upload) {
+        $scope.save = function() {
+            // if($scope.file)
+            // {
+            // alert('yes');
+            // }
+            console.log($scope.file);
+            // console.log($scope.up_pic);
+            // Upload.upload({
+            //     url: '/settings/' + login_user + '/',
+            //     data: {
+            //         file: $file
+            //     }
+            // }).success(function(resp) {
+            //     alert('hello');
+            // }).error(function(resp) {
+            //     alert('error');
+            // });
         }
     }
 ]);
