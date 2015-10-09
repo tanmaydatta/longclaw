@@ -1,22 +1,42 @@
-{% extends "parent.html" %} 
-{% block child %}
+{% extends "parent.html" %} {% block child %}
 <div class="ui top attached active tab segment">
     <h3 class="ui horizontal divider header">
   <i class="huge child  icon"></i>
   About Us
 </h3>
     <div class="ui center aligned compact  segment" style="margin-left:35%">
-        <div class="ui basic large teal label">Faculty Coordinator</div>
-        <br>
-        <br>
-        <img class="ui medium circular  image" src="/static/images/mkt_sir.jpg" style="height:20em">
-        <div class="content">
-            <h2 class="header">Dr. Manish K. Thakur</h2>
-            <div class="meta">
-                <a>Email id: manish.thakur@jiit.ac.in</a>
+        <div class="ui basic large teal top attached label">Faculty Coordinator</div>
+        <div class="ui blurring dimmable circular image">
+            <div class="ui dimmer">
+                <div class="content">
+                    <div class="center">
+                        <a href="http://www.jiit.ac.in/faculty_jiit.php?id=16637414&dep=cse&page=1" target="_blank" class="ui left blue icon button">
+                            <i class="file image outline icon"></i> Profile
+                        </a>
+                        <br>
+                        <br>
+                        <span class="ui red large label">
+                                <i class="mail icon"></i>manish.thakur@jiit.ac.in
+                            </span>
+                    </div>
+                </div>
             </div>
+            <img src="/static/images/mkt_sir.jpg" style="width:20em;height:20em">
+        </div>
+        <div class="content">
+            <h3 class="ui center aligned header">Dr. Manish K. Thakur</h3>
         </div>
     </div>
+    <!-- <div class="ui basic large teal label">Faculty Coordinator</div>
+    <br>
+    <br>
+    <img class="ui medium circular  image" src="/static/images/mkt_sir.jpg" style="height:20em">
+    <div class="content">
+        <h2 class="header">Dr. Manish K. Thakur</h2>
+        <div class="meta">
+            <a>Email id: manish.thakur@jiit.ac.in</a>
+        </div>
+    </div> -->
     <h2 class="ui horizontal divider header">
   <i class="big student icon"></i>
   Developers
@@ -27,10 +47,10 @@
                 <div class="ui dimmer">
                     <div class="content">
                         <div class="center">
-                            <a href="https://www.facebook.com/Programmer007Datta?fref=ts" class="ui circular facebook icon button">
+                            <a href="https://www.facebook.com/Programmer007Datta?fref=ts" target="_blank" class="ui circular facebook icon button">
                                 <i class="facebook icon"></i>
                             </a>
-                            <a href="https://github.com/tanmaydatta" class="ui circular  icon button">
+                            <a href="https://github.com/tanmaydatta" target="_blank" class="ui circular  icon button">
                                 <i class="github alternate icon"></i>
                             </a>
                             <br>
@@ -47,7 +67,7 @@
                 <h2 class="ui center aligned header">Tanmay Datta</h2>
             </div>
             <h5 class="extra  content">
-                <a>
+                <a class="ui center aligned container">
                     <i class="student icon"></i>Back-End and Front-End Developer
                 </a>
             </h5>
@@ -57,10 +77,10 @@
                 <div class="ui dimmer">
                     <div class="content">
                         <div class="center">
-                            <a href="https://www.facebook.com/naman.sancheti.35" class="ui circular facebook icon button">
+                            <a href="https://www.facebook.com/naman.sancheti.35" target="_blank" class="ui circular facebook icon button">
                                 <i class="facebook icon"></i>
                             </a>
-                            <a href="https://github.com/namansancheti" class="ui circular  icon button">
+                            <a href="https://github.com/namansancheti" target="_blank" class="ui circular  icon button">
                                 <i class="github alternate icon"></i>
                             </a>
                             <br>
@@ -76,9 +96,9 @@
             <div class="content">
                 <h2 class="ui center aligned header">Naman Sancheti</h2>
             </div>
-            <h5 class="extra  content">
-                <a>
-                    <i class="student icon"></i>App Developer
+            <h5 class="extra center aligned content">
+                <a class="ui center aligned container">
+                    <i class="student icon"></i>Android App Developer
                 </a>
             </h5>
         </div>
@@ -87,10 +107,10 @@
                 <div class="ui dimmer">
                     <div class="content">
                         <div class="center">
-                            <a href="https://www.facebook.com/lovishm21?fref=ts" class="ui circular facebook icon button">
+                            <a href="https://www.facebook.com/lovishm21?fref=ts" target="_blank" class="ui circular facebook icon button">
                                 <i class="facebook icon"></i>
                             </a>
-                            <a href="https://github.com/underscore21" class="ui circular  icon button">
+                            <a href="https://github.com/underscore21" target="_blank" class="ui circular  icon button">
                                 <i class="github alternate icon"></i>
                             </a>
                             <br>
@@ -107,7 +127,7 @@
                 <h2 class="ui center aligned header">Lovish Mittal</h2>
             </div>
             <h5 class="extra  content">
-                <a>
+                <a class="ui center aligned container">
                     <i class="student icon"></i>Front-End Developer
                 </a>
             </h5>
@@ -117,10 +137,10 @@
                 <div class="ui dimmer">
                     <div class="content">
                         <div class="center">
-                            <a href="https://www.facebook.com/nirmit.goyal.7" class="ui circular facebook icon button">
+                            <a href="https://www.facebook.com/nirmit.goyal.7" target="_blank" class="ui circular facebook icon button">
                                 <i class="facebook icon"></i>
                             </a>
-                            <a href="https://github.com/nirmitgoyal" class="ui circular  icon button">
+                            <a href="https://github.com/nirmitgoyal" target="_blank" class="ui circular  icon button">
                                 <i class="github alternate icon"></i>
                             </a>
                             <br>
@@ -137,13 +157,14 @@
                 <h2 class="ui center aligned header">Nirmit Goyal</h2>
             </div>
             <h5 class="extra  content">
-                <a>
+                <a class="ui center aligned container">
                     <i class="student icon"></i>Front-End Developer
                 </a>
             </h5>
         </div>
     </div>
-    <br><br>
+    <br>
+    <br>
     <label>View Coordinators:</label>
     <div class="ui fluid search selection dropdown">
         <input type="visible" name="coordinators">
@@ -158,10 +179,16 @@
         </div>
     </div>
     <div class="ui segment"></div>
-    <br><br><br><br><br><br><br><br>
-    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
-  <script type="text/javascript" src="/static/about_us.js"></script>
+<script type="text/javascript" src="/static/about_us.js"></script>
 <script type="text/javascript">
 $('#about_us_tab').addClass('active');
 </script>

@@ -422,10 +422,6 @@ def sync_facebook(name):
 def about():
     return render_template('about_us.html'), 200
 
-@app.route('/problems/', methods=['GET'])
-def problems():
-    return render_template('problems.html'), 200
-
 
 @app.route('/signin/facebook/', methods=['POST'])
 def fb_signin():
