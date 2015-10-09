@@ -1,4 +1,5 @@
-{% extends "parent.html" %} {% block child %}
+{% extends "parent.html" %} 
+{% block child %}
 <div class="ui top attached active tab segment">
     <h3 class="ui horizontal divider header">
   <i class="huge child  icon"></i>
@@ -160,14 +161,8 @@
     <br><br><br><br><br><br><br><br>
     
 </div>
+  <script type="text/javascript" src="/static/about_us.js"></script>
 <script type="text/javascript">
-$('.ui.dropdown')
-    .dropdown();
-
 $('#about_us_tab').addClass('active');
-
-$('.image').dimmer({
-    on: 'hover'
-});
 </script>
 {% endblock %}
