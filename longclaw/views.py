@@ -14,9 +14,9 @@ from auth import *
 import ipdb
 
 
-@app.route('/test/')
+@app.route('/xyz/')
 def test():
-    ipdb.set_trace()
+    # ipdb.set_trace()
     return render_template('test.html')
 
 
@@ -138,7 +138,6 @@ def validate_fb_email(email, access_token):
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
-    # import ipdb; ipdb.set_trace()
     if request.method == 'GET':
         return render_template("signup.html")
     elif request.method == 'POST':
@@ -153,9 +152,11 @@ def signup():
             enroll = form_data['enroll']
             wbpass = form_data['wbpass']
             ccuser = form_data['ccuser']
-            spuser = form_data['spuser']
             cfuser = form_data['cfuser']
-            captcha_resp = form_data['g-recaptcha-response']
+            if request.headers.get('key'):
+                key = request.headers.get('key')
+            else:
+                captcha_resp = form_data['g-recaptcha-response']
         except:
             return response_msg('error', 'form data not complete')
 
@@ -192,9 +193,12 @@ def signup():
         if not authenticate_webkiosk(enroll, wbpass):
             return response_msg('error', 'Webkiosk authentication faiiled')
 
-        if not check_captcha(captcha_resp, remoteip):
-            return response_msg('error', 'Captcha authentication faiiled')
-
+        if key:
+            if key != ANDROID_HEADER_KEY:
+                return response_msg('error', 'Authentication faiiled')
+        else:
+            if not check_captcha(captcha_resp, remoteip):
+                return response_msg('error', 'Captcha authentication faiiled')
         # authenticate online judge handles
         cc_url = requests.get('https://www.codechef.com/users/' + ccuser)
         try:
@@ -211,13 +215,6 @@ def signup():
                 return response_msg('error', 'Incorrect Codeforces Handle')
         except:
             return response_msg('error', 'could not connect to codeforces')
-
-        sp_url = requests.get('http://www.spoj.com/users/' + spuser)
-        try:
-            if '@' + spuser not in sp_url.text:
-                return response_msg('error', 'incorrect spoj handle')
-        except:
-            return response_msg('error', 'could not connect to spoj')
 
         # check if user exists
         try:
@@ -241,6 +238,7 @@ def signup():
             return response_msg('error', 'Username is already taken')
 
         # finally inserting in db
+        # import ipdb; ipdb.set_trace()
         try:
             new_user = rdb.db(TODO_DB).table("user").insert({
                 "fname": fname,
@@ -252,8 +250,7 @@ def signup():
                 "enroll": enroll,
                 "cchandle": ccuser,
                 "cfhandle": cfuser,
-                "sphandle": spuser,
-                "pic": DEFAULT_PIC
+                "pic": DEFAULT_PIC + username + '.png'
             }).run(connection)
         except:
             return response_msg('error', 'error inserting in db')
@@ -287,12 +284,19 @@ def signin():
         try:
             username = form_data['user']
             passwd = hashlib.sha224(form_data['passwd']).hexdigest()
-            captcha_resp = form_data['g-recaptcha-response']
+            if request.headers.get('key'):
+                key = request.headers.get('key')
+            else:
+                captcha_resp = form_data['g-recaptcha-response']
         except:
             return response_msg('error', 'form data not complete')
 
-        if not check_captcha(captcha_resp, remoteip):
-            return response_msg('error', 'Captcha authentication faiiled')
+        if key:
+            if key != ANDROID_HEADER_KEY:
+                return response_msg('error', 'Authentication faiiled')
+        else:
+            if not check_captcha(captcha_resp, remoteip):
+                return response_msg('error', 'Captcha authentication faiiled')
 
         # check if credentials are correct
         try:
@@ -317,6 +321,7 @@ def signin():
 
 
 def auth_username(name):
+    # import ipdb; ipdb.set_trace();
     try:
         connection = get_rdb_conn()
         cursor = rdb.db(TODO_DB).table('user').filter(
@@ -332,7 +337,7 @@ def auth_username(name):
 
 @app.route('/profile/<name>/', methods=['GET'])
 def profile(name):
-    
+    # import ipdb; ipdb.set_trace();
     auth = auth_username(name)
     if auth != True:
         return render_template('404.html'), 404
@@ -366,22 +371,25 @@ def user_settings(name):
     if auth != True:
         return render_template('404.html'), 404
 
-    try:
-        user = get_user_from_auth(request.cookies['auth_key'])
-        # return redirect('/')
-    except:
-        user = ''
+    if request.method == 'GET':
+        try:
+            user = get_user_from_auth(request.cookies['auth_key'])
+            # return redirect('/')
+        except:
+            user = ''
+        try:
+            connection = get_rdb_conn()
+            cursor = rdb.db(TODO_DB).table('user').filter(
+                rdb.row['username'] == name
+                ).run(connection)
+            pic = cursor.items[0]['pic']
+        except:
+            return response_msg('error', 'Could not connect to db')
 
-    try:
-        connection = get_rdb_conn()
-        cursor = rdb.db(TODO_DB).table('user').filter(
-            rdb.row['username'] == name
-            ).run(connection)
-        pic = cursor.items[0]['pic']
-    except:
-        return response_msg('error', 'Could not connect to db')
-
-    return render_template('settings.html',pic=pic, username=name, login_user=user, app_id=FB_APP_ID)
+        return render_template('settings.html',pic=pic, username=name, login_user=user, app_id=FB_APP_ID)
+    else:
+        import ipdb; ipdb.set_trace();
+        return True
 
 
 @app.route('/sync/<name>/', methods=['POST'])
@@ -395,7 +403,7 @@ def sync_facebook(name):
     try:
         graph = GraphAPI(form_data['access_token'])
         try:
-            import ipdb; ipdb.set_trace();
+            # import ipdb; ipdb.set_trace();
             email = graph.get_object('me', fields='email')['email']
             pic = graph.get_object('me/picture', width='400', height='400')['url']
             print pic

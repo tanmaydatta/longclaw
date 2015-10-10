@@ -105,7 +105,7 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
                 FB.api('/me?fields=email', function(response) {
                     if (response && !response.error) {
                         $scope.dataObj['fb_email'] = response['email'];
-                        
+
                         $http({
                             method: 'POST',
                             url: '/signin/facebook/',

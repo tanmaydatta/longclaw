@@ -1,6 +1,6 @@
 {% extends "base_profile.html" %}
 {% block body %}
-  <div id="settings" class="ui top attached active tab segment" >
+  <div id="settings" ng-controller="settings" class="ui top attached active tab segment" >
     <div  class="ui padded clear grid">
       <div class="six wide column">
         <div class="ui right fluid  left icon input">
@@ -21,7 +21,7 @@
           <input type="password" placeholder="Confirm Password">
         </div>
         <br><br><br><br>
-        <div class="ui blue icon medium button" style="width:100%" tabindex="0">
+        <div class="ui blue icon medium button" style="width:100%" tabindex="0" ng-click="save()">
           <i class="check circle outline icon"></i>
           Save
         </div>
@@ -37,8 +37,11 @@
         Sync profile with Facebook
         </button>
         <div class="ui horizontal divider">Or</div>
-        <div class="ui circular blue fluid icon button " tabindex="0">
-          Upload a Profile Pic
+        <div>
+          <label for="file" class="ui circular blue fluid icon button " tabindex="0">
+            Upload a Profile Pic
+          </label>
+          <input ngf-pattern="'image/*'" accept="image/*" ngf-select ng-model="file" type="file" id="file" ng-model="file" />
         </div>
       </div>
     </div>
