@@ -428,6 +428,10 @@ def sync_facebook(name):
 def about():
     return render_template('about_us.html'), 200
 
+@app.route('/discuss/', methods=['GET'])
+def discuss():
+    return render_template('discuss.html'), 200
+
 @app.route('/problems/', methods=['GET'])
 def problems():
     return render_template('problems.html'), 200
