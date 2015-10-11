@@ -23,7 +23,7 @@ signinapp.controller("formctrl", ['$scope', '$http', '$element', '$cookies',
         // $scope.uname = "";
         // $scope.passw = "";
         $scope.isInvalid = function() {
-            return !form_element.form('validate form');
+            return !($('#form').form('validate form'));
         }
         $scope.form_validate = function() {
             if (this.isInvalid()) {

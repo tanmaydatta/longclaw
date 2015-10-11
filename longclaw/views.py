@@ -4,13 +4,13 @@ import json
 from rethinkdb.errors import RqlRuntimeError
 from flask import request, render_template, redirect
 import requests
-from config import *
 from urllib import urlencode
 from urllib2 import urlopen
 import re
 import hashlib
 from facebook import GraphAPI, GraphAPIError
 from auth import *
+from cors import *
 import ipdb
 
 
@@ -18,15 +18,6 @@ import ipdb
 def test():
     # ipdb.set_trace()
     return render_template('test.html')
-
-
-def response_msg(status, msg, **kwargs):
-    res = {}
-    res['status'] = status
-    res['msg'] = msg
-    for name, value in kwargs.items():
-        res[name] = value
-    return json.dumps(res), 200
 
 
 def authenticate_webkiosk(enroll, passwd):
@@ -136,7 +127,8 @@ def validate_fb_email(email, access_token):
         return response_msg('error', 'facebook not synced')
 
 
-@app.route('/signup/', methods=['GET', 'POST'])
+@app.route('/signup/', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*', headers=['Content-Type', 'auth_key'])
 def signup():
     if request.method == 'GET':
         return render_template("signup.html")
@@ -155,7 +147,9 @@ def signup():
             cfuser = form_data['cfuser']
             if request.headers.get('key'):
                 key = request.headers.get('key')
+                captcha_resp = ""
             else:
+                key = ""
                 captcha_resp = form_data['g-recaptcha-response']
         except:
             return response_msg('error', 'form data not complete')
@@ -261,13 +255,14 @@ def signup():
             return response_msg('error', 'error inserting in db')
 
         # return response_msg('success', 'OK')
-        return response_msg('success', 'OK', auth_key=gen_auth_key(username))
+        return response_msg('success', 'OK', auth_key=gen_auth_key(username), user=username)
 
     else:
         return response_msg('error', 'only GET/POST supported')
 
 
-@app.route('/signin/', methods=['GET', 'POST'])
+@app.route('/signin/', methods=['GET', 'POST', 'OPTIONS'])
+@crossdomain(origin='*', headers=['Content-Type', 'auth_key'])
 def signin():
     # import ipdb; ipdb.set_trace()
     remoteip = request.remote_addr
@@ -286,7 +281,9 @@ def signin():
             passwd = hashlib.sha224(form_data['passwd']).hexdigest()
             if request.headers.get('key'):
                 key = request.headers.get('key')
+                captcha_resp = ''
             else:
+                key = ""
                 captcha_resp = form_data['g-recaptcha-response']
         except:
             return response_msg('error', 'form data not complete')
@@ -395,6 +392,7 @@ def user_settings(name):
 @app.route('/sync/<name>/', methods=['POST'])
 @login_required
 def sync_facebook(name):
+    # import ipdb; ipdb.set_trace();
     try:
         form_data = json.loads(request.data)
     except:
@@ -435,8 +433,10 @@ def problems():
     return render_template('problems.html'), 200
 
 
-@app.route('/signin/facebook/', methods=['POST'])
+@app.route('/signin/facebook/', methods=['POST', 'OPTIONS'])
+@crossdomain(origin='*', headers='Content-Type')
 def fb_signin():
+    import ipdb; ipdb.set_trace()
     try:
         form_data = json.loads(request.data)
     except:
@@ -467,4 +467,22 @@ def fb_signin():
         return response_msg('error', "User doesn't exists")
 
     # store in session
-    return response_msg('success', 'logged in', auth_key=gen_auth_key(cursor.items[0]['username']))    
+    return response_msg('success', 'logged in',
+        auth_key=gen_auth_key(cursor.items[0]['username']),
+        user=cursor.items[0]['username'])
+
+
+@app.route('/auth_key/', methods=['POST', 'OPTIONS'])
+@crossdomain(origin='*', headers='auth_key')
+def check_auth_key():
+    # ipdb.set_trace()
+    try:
+        auth_key = request.headers.get('auth_key')
+    except:
+        return response_msg('error', 'auth_key not found')
+    
+    try:
+        user = get_user_from_auth(request.headers.get('auth_key'))
+        return response_msg('success', 'user authenticated', user=user)
+    except:
+        return response_msg('error', 'invalid auth_key')       
