@@ -1,265 +1,105 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <script type="text/javascript" src="/static/angular.min.js"></script>
-    <script type="text/javascript" src="/static/file_upload.js"></script>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>JIIT-Knuth Hub</title>
-    <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
-    <script src='/static/angular-cookies.min.js'></script>
-    <script type="text/javascript" src="/static/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/markdown.min.js"></script>
-    <script src="/static/semantic/dist/semantic.min.js"></script>
-    <script type="text/javascript" src="/static/parent.js"></script>
-    {% block head %}{% endblock %}
-</head>
-<script type="text/javascript">
-//   var blogapp = angular.module("newblog", ["ngCookies"]);
-// blogapp.controller("blogctrl", ['$scope', '$http', '$element', '$cookies',
-//     function($scope, $http, $element, $cookies) {
-//       $scope.texta=" ";
-//     }
-//     ]);
-</script>
-
-<body ng-app="knuth">
-    <!-- this segment is containing the whole content -->
-    <div id="stick_it" class="ui container inverted clearing segment" style="background:white; width:1200px">
-        <div class="ui" style="width: 100% !important; height: 43px !important; left: 312px;">
-            <a href="/" class="right rounded spaced image">
-                <img src="/static/images/logo.png" height="50" width="200">
-                <!-- Knuth-JIIT -->
-            </a>
-            <div ng-controller="signout" class="ui right floated buttons">
-                {% if login_user %}
-                <a href="/profile/{{login_user}}" class="ui blue animated icon button" tabindex="0">
-                    <div class="visible content">{{login_user}}</div>
-                    <a ng-click="signout()" class="ui green animated icon button" tabindex="0">
-                        <div class="visible content">Sign Out</div>
+    <head>
+        <script type="text/javascript" src="/static/angular.min.js"></script>
+        <script type="text/javascript" src="/static/file_upload.js"></script>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>JIIT-Knuth Hub</title>
+        <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
+        <script src='/static/angular-cookies.min.js'></script>
+        <script type="text/javascript" src="/static/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/markdown.min.js"></script>
+        <script src="/static/semantic/dist/semantic.min.js"></script>
+        <script type="text/javascript" src="/static/parent.js"></script>
+        {% block head %}{% endblock %}
+    </head>
+    <script type="text/javascript">
+    //   var blogapp = angular.module("newblog", ["ngCookies"]);
+    // blogapp.controller("blogctrl", ['$scope', '$http', '$element', '$cookies',
+    //     function($scope, $http, $element, $cookies) {
+    //       $scope.texta=" ";
+    //     }
+    //     ]);
+    </script>
+    <body ng-app="knuth">
+        <!-- this segment is containing the whole content -->
+        <div>
+            <div id="stick_it" class="ui container inverted clearing segment" style="background:white; width:1200px">
+                <div class="ui" style="width: 100% !important; height: 43px !important; left: 312px;">
+                    <a href="/" class="right rounded spaced image">
+                        <img src="/static/images/logo.png" height="50" width="200">
+                        <!-- Knuth-JIIT -->
+                    </a>
+                    <div ng-controller="signout" class="ui right floated buttons">
+                        {% if login_user %}
+                            <a href="/profile/{{login_user}}" class="ui blue animated icon button" tabindex="0">
+                                <div class="visible content">{{login_user}}</div>
+                                <div class="hidden content">
+                                    <i class="medium sign in icon"></i>
+                                </div>
+                            </a>
+                            <a ng-click="signout()" class="ui green animated icon button" tabindex="0">
+                                <div class="visible content">Sign Out</div>
+                                <div class="hidden content">
+                                    <i class="medium reply all icon"></i>
+                                </div>
+                            </a>
                         {% else %}
-                        <a href="/signin" class="ui blue animated icon button" tabindex="0">
-                            <div class="visible content">Login</div>
-                            <div class="hidden content">
-                                <i class="medium sign in icon"></i>
-                            </div>
+                            <a href="/signin" class="ui blue animated icon button" tabindex="0">
+                                <div class="visible content">Login</div>
+                                <div class="hidden content">
+                                    <i class="medium sign in icon"></i>
+                                </div>
+                            </a>
                             <a href="/signup" class="ui green animated icon button" tabindex="0">
                                 <div class="visible content">Sign Up</div>
                                 <div class="hidden content">
                                     <i class="medium reply all icon"></i>
                                 </div>
-                                {% endif %}
                             </a>
-                            <!-- <div class="or"></div> -->
+                        {% endif %}
+                        
+                        <!-- <div class="or"></div> -->
+                        
+                    </div>
+                </div>
+                <div id="clear_menu" class="ui sticky large icon menu">
+                    <div class="ui container" id="main_menu">
+                        <a class="active item" href="/">
+                            <i class="home icon"></i> Home
                         </a>
-            </div>
-        </div>
-        <div id="clear_menu" class="ui sticky large icon menu">
-            <div class="ui container" id="main_menu">
-                <a class="active item" href="/">
-                    <i class="home icon"></i> Home
-                </a>
-                <a class="item" href="/ratings">
-                    <i class="student icon"></i> Ratings
-                </a>
-                <a class="item" href="/events">
-                    <i class="calendar icon"></i> Events
-                </a>
-                <a class="item" href="/discuss">
-                    <i class="feed   icon"></i>
-                    <!-- announcement -->
-                    Discuss
-                </a>
-                <a class="item" href="/problems">
-                    <i class="code icon"></i> Problems
-                </a>
-                <a class="item" href="/facebook">
-                    <i class="facebook icon"></i> Facebook
-                </a>
-                <a class="item" href="/about">
-                    <i class="smile icon"></i> About Us
-                </a>
-            </div>
-        </div>
-        {% block child %}{% endblock %}
-        <!-- <div class="ui active tab segment" > -->
-        <!-- home ka code
-      </div> -->
-        <!-- <div class="ui tab segment" > -->
-        <!-- profile ka code -->
-        <!-- </div> -->
-        <!-- <div class="ui tab segment" href="events"> -->
-        <!-- events ka code -->
-        <!-- </div> -->
-        <!-- <div class="ui tab segment" href="discuss"> -->
-        <!-- discuss ka code -->
-        <!-- </div> -->
-        <!-- <div class="ui tab segment" href="problems"> -->
-        <!-- problems ka code -->
-        <!-- </div> -->
-        <!-- <div class="ui tab segment" href="facebook"> -->
-        <!-- facebook ka code -->
-        <!-- </div> -->
-        <!-- <div class="ui tab segment" href="about_us"> -->
-        <!-- about_us ka code -->
-        <!-- </div> -->
-        <!--  <div id="sec_menu" class="ui pointing  fixed tabular large secondary  menu" >
-        <div class="ui container">
-          <a class="item active" href="overview">
-            Overview
-          </a>
-          <a class="item" href="blog">
-            Blog
-          </a>
-          <a class="item" href="settings">
-            Settings
-          </a>
-          <a class="item" href="submissions">
-            Submissions
-          </a>
-        </div>
-      </div> -->
-        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-        <!--
-      <div id="clear_it" class="ui bottom attached active tab segment" href="overview">
-        <div  class="ui padded clear grid">
-          <div class=" twelve wide column">
-            <div class="ui massive divided selection list">
-              <a class="item">
-                <div class="ui massive labels">
-                  <div class="ui  red horizontal label">Name:</div>
-                  <div class="ui  label">
-                    <img class="ui right tiny spaced  image" src="justen.jpg">
-                    Name
-                  </div>
+                        <a class="item" href="/ratings">
+                            <i class="student icon"></i> Ratings
+                        </a>
+                        <a class="item" href="/events">
+                            <i class="calendar icon"></i> Events
+                        </a>
+                        <a class="item" href="/discuss">
+                            <i class="feed   icon"></i>
+                            <!-- announcement -->
+                            Discuss
+                        </a>
+                        <a class="item" href="/problems">
+                            <i class="code icon"></i> Problems
+                        </a>
+                        <a class="item" href="/facebook">
+                            <i class="facebook icon"></i> Facebook
+                        </a>
+                        <a class="item" href="/about">
+                            <i class="smile icon"></i> About Us
+                        </a>
+                    </div>
                 </div>
-              </a>
-              <a class="item">
-                <div class="huge ui purple horizontal label">Year:</div>
-                <div class="ui huge label">Year</div>
-              </a>
-              <a class="item">
-                <div class="ui red huge horizontal label">College Rating:</div>
-                <div class="ui huge label">College Rating</div>
-              </a>
-              <a class="item">
-                <div class="ui blue huge horizontal label">Codechef Rating:</div>
-                <div class="ui huge label">Codechef Rating</div>
-              </a>
-              <a class="item">
-                <div class="ui orange huge horizontal label">Codeforces Rating:</div>
-                <div class="ui huge label">Codeforces Rating</div>
-              </a>
-              <a class="item">
-                <div class="ui green huge horizontal label">Spoj Rating:</div>
-                <div class="ui huge label">Spoj Rating</div>
-              </a>
-              <a class="item">
-                <div class="ui teal huge horizontal label">Upvotes:</div>
-                <div class="ui huge label">67
-                  <i class="thumbs outline up icon"></i>
-                </div>
-              </a>
-            </div>
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-          </div>
-          <div class="four wide center aligned column">
-            <img id="image_pad" class="ui medium circular image" src="justen.jpg  ">
-          </div>
-        </div>
-      </div>
-      <div id="clear_it" class="ui bottom attached  tab segment" href="blog">
-        <div class="ui form">
-          <div class="field">
-            <label>Blog Title</label>
-            <textarea rows="2"></textarea>
-          </div>
-          <div class="field">
-            <label>Content</label>
-            <textarea rows="12"></textarea>
-          </div>
-        </div>
-        <br>
-        <div class="ui big  buttons" tabindex="0">
-          <button class="ui labeled icon green submit button" tabindex="0">
-          <i class="left external icon"></i>
-          Post
-          </button>
-          <button class="ui button red" tabindex="0">
-          <i class="strikethrough icon"></i>
-          Discard
-          </button>
-          <button class="ui right labeled icon button yellow" tabindex="0">
-          Save Draft
-          <i class="right save icon"></i>
-          </button>
-        </div>
-      </div>
-      <div id="clear_it" class="ui bottom attached  tab segment" href="settings">
-        <div  class="ui padded clear grid">
-          <div class="eight wide column">
-            <div class="ui right labeled fluid action left icon input">
-              <i class="unlock icon"></i>
-              <input type="password" placeholder="Old Password">
-              <a class="ui tag orange huge label">
-                Old Password
-              </a>
-            </div><br>
-            <br>
-            <br>
-            <div class="ui right labeled fluid action left icon input">
-              <i class="lock icon"></i>
-              <input type="password" placeholder="New Password">
-              <a class="ui tag purple label">
-                New Password
-              </a>
-            </div>
-            <br>
-            <br>
-            <br>
-            <div class="ui right labeled fluid action left icon input">
-              <i class="lock icon"></i>
-              <input type="password" placeholder="Confirm Password">
-              <a class="ui tag purple label">
-                Confirm Password
-              </a>
-            </div>
-            <br><br><br><br>
-            <div class="ui green icon big button" tabindex="0">
-              <i class="check circle outline icon"></i>
-              Change
-            </div>
-          </div>
-          <div class="eight wide center aligned column">
-            <div class="ui two row centered grid" >
-              <img id="image_pad" class="ui  medium circular image" style="height:290px" src="justen.jpg">        <br><br><br>
-            </div>
-            <br><br>
-            <button class="ui facebook fluid button">
-            <i class="facebook icon"></i>
-            Sync Pic with Facebook
-            </button>
-            <div class="ui horizontal divider">Or</div>
-            <div class="ui circular teal fluid icon button " tabindex="0">
-              Upload a Profile Pic
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="clear_it" class="ui bottom attached  tab segment" href="submissions">
-      </div>
-      -->
-    </div>
-    {% block end %}{% endblock %}
-</body>
-<script type="text/javascript">
-$('#clear_menu')
-    .sticky({
+                {% block child %}{% endblock %}
+            </div></div>
+            {% block end %}{% endblock %}
+        </body>
+        <script type="text/javascript">
+        $('#clear_menu')
+        .sticky({
         context: '#stick_it'
-    });
-</script>
-
-</html>
+        });
+        </script>
+    </html>

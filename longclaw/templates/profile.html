@@ -1,10 +1,11 @@
 {% extends "base_profile.html" %}
 {% block body %}
+<!-- <div ng-include src="'public/views/base_profile.html'"></div> -->
   <div  class="ui padded clear grid form">
     <div class=" twelve wide column">
       <h1>
-      <a href="/profile/{{username}}" class='item'>
-        {{username}}
+      <a href="/profile/{{user.username}}" class='item'>
+        {{user.username}}
       </a>
       </h1>
       <div class="ui form" style="color:black;font-size:16px">
@@ -18,25 +19,25 @@
           <li>
             <div id="college_rating">
               <i class="code icon"></i>
-              <span>College Rating: 1500</span>
+              <span>College Rating: {{user.rating}}</span>
             </div>
           </li>
           <li>
             <div id="codechef_rating">
               <i class="code icon"></i>
-              <span>Codechef Rating: 1500</span>
+              <span>Codechef Rating: {{user.ccrating}}</span>
             </div>
           </li>
           <li>
             <div id="codeforces_rating">
               <i class="code icon"></i>
-              <span>Codeforces Rating: 1500</span>
+              <span>Codeforces Rating: {{user.cfrating}}</span>
             </div>
           </li>
           <li>
             <div id="email">
               <i class="mail outline icon"></i>
-              <span id="email_id">tanmaydatta@gmail.com</span>
+              <span id="email_id">{{user.email}}</span>
             </div>
           </li>
           <li>
@@ -52,7 +53,7 @@
     </div>
     <!-- <div class="ui vertical divider">      </div> -->
     <div class="four wide center aligned column">
-      <img id="image_pad" class="ui medium circular image" src="{{pic}}">
+      <img id="image_pad" class="ui medium circular image" src="{{user.pic}}">
     </div>
   </div>
   <script type="text/javascript">

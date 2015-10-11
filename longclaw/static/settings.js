@@ -84,25 +84,38 @@ knuth.controller("facebook", ['$scope', '$http',
 ]);
 
 
-knuth.controller("settings", ['$scope', '$http', 'Upload',
-    function($scope, $http, Upload) {
+knuth.controller("settings", ['$scope', '$http',
+    function($scope, $http) {
         $scope.save = function() {
-            // if($scope.file)
-            // {
-            // alert('yes');
+            // var postData = {};
+            var postData = new FormData();
+            if ($scope.settings) {
+                postData['settings'] = $scope.settings;
+            }
+            $('#settings').addClass('loading');
+            $http({
+                method: 'POST',
+                url: '/settings/' + login_user + '/',
+                data: $scope.settings, // pass in data as strings
+            }).success(function(data) {
+                // $('#form').removeClass('loading');
+                // console.log(data);
+                if (data['status'] != 'success') {
+                    //     // if not successful, bind errors to error variables
+                    //     $('#sync').removeClass('loading');
+                        alert(data['msg']);
+                        $('#settings').removeClass('loading');
+                } else {
+                    location.reload();
+                }
+            }).error(function(data) {
+                alert('Error');
+                $('#settings').removeClass('loading');
+            });
+            
+            // if ($('#pic')[0].files.length == 1) {
+            //     postData['pic'] = $('#pic')[0];
             // }
-            console.log($scope.file);
-            // console.log($scope.up_pic);
-            // Upload.upload({
-            //     url: '/settings/' + login_user + '/',
-            //     data: {
-            //         file: $file
-            //     }
-            // }).success(function(resp) {
-            //     alert('hello');
-            // }).error(function(resp) {
-            //     alert('error');
-            // });
         }
     }
 ]);

@@ -21,7 +21,7 @@ def get_user_from_auth(auth_key):
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        import ipdb; ipdb.set_trace();
+        # import ipdb; ipdb.set_trace();
     	try:
             if request.headers.get('key'):
                 key = request.headers.get('key')

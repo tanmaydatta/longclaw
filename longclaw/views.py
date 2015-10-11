@@ -130,6 +130,7 @@ def validate_fb_email(email, access_token):
 @app.route('/signup/', methods=['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*', headers=['Content-Type', 'auth_key'])
 def signup():
+    import ipdb; ipdb.set_trace();
     if request.method == 'GET':
         return render_template("signup.html")
     elif request.method == 'POST':
@@ -311,7 +312,7 @@ def signin():
         if db_pass != passwd:
             return response_msg('error', 'Passwords do not match')
 
-        return response_msg('success', 'logged in', auth_key=gen_auth_key(username))
+        return response_msg('success', 'logged in', auth_key=gen_auth_key(username), user=username)
 
     else:
         return response_msg('error', 'only GET/POST supported')
@@ -332,18 +333,18 @@ def auth_username(name):
     return True
 
 
+
 @app.route('/profile/<name>/', methods=['GET'])
 def profile(name):
     # import ipdb; ipdb.set_trace();
     auth = auth_username(name)
     if auth != True:
-        return render_template('404.html'), 404
+        return False
     try:
         user = get_user_from_auth(request.cookies['auth_key'])
         # return redirect('/')
     except:
         user = ''
-
     try:
         connection = get_rdb_conn()
         cursor = rdb.db(TODO_DB).table('user').filter(
@@ -353,7 +354,7 @@ def profile(name):
     except:
         return response_msg('error', 'Could not connect to db')
 
-    return render_template('profile.html', pic=pic, username=name, login_user=user)
+    return render_template('profile.html', user=cursor.items[0], login_user=user)
 
 
 @app.route('/blog/new/<name>/', methods=['GET', 'POST'])
@@ -368,6 +369,7 @@ def user_settings(name):
     if auth != True:
         return render_template('404.html'), 404
 
+    # import ipdb;ipdb.set_trace()
     if request.method == 'GET':
         try:
             user = get_user_from_auth(request.cookies['auth_key'])
@@ -385,8 +387,56 @@ def user_settings(name):
 
         return render_template('settings.html',pic=pic, username=name, login_user=user, app_id=FB_APP_ID)
     else:
-        import ipdb; ipdb.set_trace();
-        return True
+        # import ipdb; ipdb.set_trace();
+        try:
+            form_data = json.loads(request.data)
+            passwd = form_data['passwd']
+            cpasswd = form_data['cpasswd']
+            npasswd = form_data['npasswd']
+            if len(npasswd) < 6:
+                return response_msg(
+                    'error',
+                    'Password should be minimum of 6 characters'
+                    )
+            passwd = hashlib.sha224(form_data['passwd']).hexdigest()
+            cpasswd = hashlib.sha224(form_data['cpasswd']).hexdigest()
+            npasswd = hashlib.sha224(form_data['npasswd']).hexdigest()
+            if request.headers.get('key'):
+                key = request.headers.get('key')
+            else:
+                key = ""
+        except:
+            return response_msg('error', 'form data not complete')
+
+        if key:
+            if key != ANDROID_HEADER_KEY:
+                return response_msg('error', 'Authentication faiiled')
+
+        # check if credentials are correct
+        try:
+            connection = get_rdb_conn()
+            cursor = rdb.db(TODO_DB).table('user').filter(
+                rdb.row['username'] == name
+                ).run(connection)
+        except:
+            return response_msg('error', 'Could not connect to db')
+
+        db_pass = cursor.items[0]['passwd']
+        if db_pass != passwd:
+            return response_msg('error', 'Current Password does not match')
+
+        if cpasswd != npasswd:
+            return response_msg('error', 'New Passwords do not match')
+
+        try:
+            cursor = rdb.db(TODO_DB).table('user').filter(
+                rdb.row['username'] == name
+                ).update({'passwd': cpasswd}
+                ).run(connection)
+        except:
+            return response_msg('error', 'Could not connect to db')
+
+        return response_msg('success', 'OK')
 
 
 @app.route('/sync/<name>/', methods=['POST'])
@@ -426,15 +476,30 @@ def sync_facebook(name):
 
 @app.route('/about/', methods=['GET'])
 def about():
-    return render_template('about_us.html'), 200
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('about_us.html', login_user=user), 200
 
 @app.route('/discuss/', methods=['GET'])
 def discuss():
-    return render_template('discuss.html'), 200
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('discuss.html', login_user=user), 200
 
 @app.route('/problems/', methods=['GET'])
 def problems():
-    return render_template('problems.html'), 200
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('problems.html', login_user=user), 200
 
 
 @app.route('/signin/facebook/', methods=['POST', 'OPTIONS'])
@@ -487,6 +552,13 @@ def check_auth_key():
     
     try:
         user = get_user_from_auth(request.headers.get('auth_key'))
-        return response_msg('success', 'user authenticated', user=user)
+        try:
+            connection = get_rdb_conn()
+            cursor = rdb.db(TODO_DB).table('user').filter(
+                rdb.row['username'] == user
+                ).run(connection)
+        except:
+            return response_msg('error', 'Could not connect to db')
+        return response_msg('success', 'user authenticated', user=cursor.items[0])
     except:
         return response_msg('error', 'invalid auth_key')       
