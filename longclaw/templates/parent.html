@@ -45,66 +45,67 @@
                             <div class="hidden content">
                                 <i class="medium sign in icon"></i>
                             </div>
+                            <a href="/signup" class="ui green animated icon button" tabindex="0">
+                                <div class="visible content">Sign Up</div>
+                                <div class="hidden content">
+                                    <i class="medium reply all icon"></i>
+                                </div>
+                                {% endif %}
+                            </a>
+                            <!-- <div class="or"></div> -->
                         </a>
-                        <a href="/signup" class="ui green animated icon button" tabindex="0">
-                            <div class="visible content">Sign Up</div>
-                            <div class="hidden content">
-                                <i class="medium reply all icon"></i>
-                            </div>
-                        </a>
-                        {% endif %}
-                        <!-- <div class="or"></div> -->
             </div>
-            <div id="clear_menu" class="ui sticky large icon menu">
-                <div class="ui container" id="main_menu">
-                    <a class="active item" href="/">
-                        <i class="home icon"></i> Home
-                    </a>
-                    <a class="item" href="/ratings">
-                        <i class="student icon"></i> Ratings
-                    </a>
-                    <a class="item" href="/events">
-                        <i class="calendar icon"></i> Events
-                    </a>
-                    <a class="item" href="/discuss">
-                        <i class="feed   icon"></i>
-                        <!-- announcement -->
-                        Discuss
-                    </a>
-                    <a class="item" href="/problems">
-                        <i class="code icon"></i> Problems
-                    </a>
-                    <a class="item" href="/facebook">
-                        <i class="facebook icon"></i> Facebook
-                    </a>
-                    <a class="item" href="/about">
-                        <i class="smile icon"></i> About Us
-                    </a>
-                </div>
+        </div>
+        <div id="clear_menu" class="ui sticky large icon menu">
+            <div class="ui container" id="main_menu">
+                <a class="active item" href="/">
+                    <i class="home icon"></i> Home
+                </a>
+                <a class="item" href="/ratings">
+                    <i class="student icon"></i> Ratings
+                </a>
+                <a class="item" href="/events">
+                    <i class="calendar icon"></i> Events
+                </a>
+                <a class="item" href="/discuss">
+                    <i class="feed   icon"></i>
+                    <!-- announcement -->
+                    Discuss
+                </a>
+                <a class="item" href="/problems">
+                    <i class="code icon"></i> Problems
+                </a>
+                <a class="item" href="/facebook">
+                    <i class="facebook icon"></i> Facebook
+                </a>
+                <a class="item" href="/about">
+                    <i class="smile icon"></i> About Us
+                </a>
             </div>
-            {% block child %}{% endblock %}
-            <!-- <div class="ui active tab segment" > -->
-            <!-- home ka code
+        </div>
+        {% block child %}{% endblock %}
+        <!-- <div class="ui active tab segment" > -->
+        <!-- home ka code
       </div> -->
-            <!-- <div class="ui tab segment" > -->
-            <!-- profile ka code -->
-            <!-- </div> -->
-            <!-- <div class="ui tab segment" href="events"> -->
-            <!-- events ka code -->
-            <!-- </div> -->
-            <!-- <div class="ui tab segment" href="discuss"> -->
-            <!-- discuss ka code -->
-            <!-- </div> -->
-            <!-- <div class="ui tab segment" href="problems"> -->
-            <!-- problems ka code -->
-            <!-- </div> -->
-            <!-- <div class="ui tab segment" href="facebook"> -->
-            <!-- facebook ka code -->
-            <!-- </div> -->
-            <!-- <div class="ui tab segment" href="about_us"> -->
-            <!-- about_us ka code -->
-            <!-- </div> -->
-            <!--  <div id="sec_menu" class="ui pointing  fixed tabular large secondary  menu" >
+        <!-- <div class="ui tab segment" > -->
+        <!-- profile ka code -->
+        <!-- </div> -->
+        <!-- <div class="ui tab segment" href="events"> -->
+        <!-- events ka code -->
+        <!-- </div> -->
+        <!-- <div class="ui tab segment" href="discuss"> -->
+        <!-- discuss ka code -->
+        <!-- </div> -->
+        <!-- <div class="ui tab segment" href="problems"> -->
+        <!-- problems ka code -->
+        <!-- </div> -->
+        <!-- <div class="ui tab segment" href="facebook"> -->
+        <!-- facebook ka code -->
+        <!-- </div> -->
+        <!-- <div class="ui tab segment" href="about_us"> -->
+        <!-- about_us ka code -->
+        <!-- </div> -->
+        <!--  <div id="sec_menu" class="ui pointing  fixed tabular large secondary  menu" >
         <div class="ui container">
           <a class="item active" href="overview">
             Overview
@@ -120,9 +121,9 @@
           </a>
         </div>
       </div> -->
-            <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            <!--
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        <!--
       <div id="clear_it" class="ui bottom attached active tab segment" href="overview">
         <div  class="ui padded clear grid">
           <div class=" twelve wide column">
@@ -251,8 +252,8 @@
       <div id="clear_it" class="ui bottom attached  tab segment" href="submissions">
       </div>
       -->
-        </div>
-        {% block end %}{% endblock %}
+    </div>
+    {% block end %}{% endblock %}
 </body>
 <script type="text/javascript">
 $('#clear_menu')
