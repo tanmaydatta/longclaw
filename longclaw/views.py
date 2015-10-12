@@ -501,6 +501,23 @@ def problems():
         user = ''
     return render_template('problems.html', login_user=user), 200
 
+@app.route('/add_problem/', methods=['GET'])
+def add_problem():
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('add_problem.html', login_user=user), 200
+
+@app.route('/admin/', methods=['GET'])
+def admin():
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('admin.html', login_user=user), 200
 
 @app.route('/signin/facebook/', methods=['POST', 'OPTIONS'])
 @crossdomain(origin='*', headers='Content-Type')
