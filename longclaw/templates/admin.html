@@ -7,15 +7,14 @@
     <script src="/static/jquery.min.js"></script>
     <script src='/static/angular.min.js'></script>
     <script src='/static/angular-cookies.min.js'></script>
-    <script src='/static/admin.js'></script>
     <script src="/static/semantic/dist/semantic.min.js"></script>
     <!-- // <script src='/static/captcha.js'></script> -->
 </head>
 
 <body ng-app="admin">
     <div class="ui container" style="margin-left:30%;margin-right:30%;margin-top:3%;margin-bottom:3%;width:600px">
-        <div id='form' class="ui form" ng-controller="admin" ng-submit="">
-            <h2 class="ui dividing header" style="text-align: center;margin-top: 5px;">Admin Login for Problem Set</h2>
+        <div id='form' class="ui form" ng-controller="adminctrl">
+            <h2 class="ui dividing header" style="text-align: center;margin-top: 5px;">Admin Login</h2>
             <br>
             <div class="field">
                 <div class="two fields">
@@ -30,11 +29,12 @@
                     </div>
                 </div>
             </div>
-            <button href="/add_problem/" class="ui primary button" style="width:100%;margin-top:2%" ng-click="">
+            <button class="ui primary button" style="width:100%;margin-top:2%" ng-click="adminlogin">
             Login
             </button>
         </div>
     </div>
 </body>
+    <script src='/static/admin.js'></script>
 
 </html>
