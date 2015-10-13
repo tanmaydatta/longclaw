@@ -31,7 +31,7 @@ $(document).ready(function() { /*code here*/
     });
 });
 
-var knuth = angular.module("knuth", ['ngCookies', 'ngFileUpload']);
+var knuth = angular.module("knuth", ['ngCookies']);
 knuth.controller("signout", ['$scope', '$cookies',
     function($scope, $cookies) {
       $scope.signout = function() {

@@ -1,7 +1,9 @@
+blinker==1.4
 decorator==4.0.2
 facebook-sdk==0.4.0
 flake8==2.4.1
 Flask==0.10.1
+Flask-Mail==0.9.1
 Flask-Triangle==0.5.4
 functools32==3.2.3.post2
 ipdb==0.8.1

@@ -1,0 +1,4 @@
+<!--             <div class="ui rounded images">
+                {% for image in images %}
+                <img class="ui image" {{ src="/static/images/logo.png" }}> {% endfor %}
+            </div> -->

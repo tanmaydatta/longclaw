@@ -1,10 +1,12 @@
 from redis import Redis
+from runserver import host
 
 # rethink config
 RDB_HOST = 'localhost'
 RDB_PORT = 28015
 TODO_DB = 'knuth'
 
+rds = Redis()
 
 DEFAULT_PIC = 'https://github.com/identicons/'
 FB_APP_ID = 161142620896547
