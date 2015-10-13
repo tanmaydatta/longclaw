@@ -12,11 +12,17 @@ from facebook import GraphAPI, GraphAPIError
 from auth import *
 from cors import *
 import ipdb
-
+import math
+from flask.ext.mail import Message
+from mail_config import *
+from longclaw import mail
 
 @app.route('/xyz/')
 def test():
     # ipdb.set_trace()
+    # msg = Message('lode', sender=ADMINS[0], recipients=['lovishmittal21@gmail.com'])
+    # msg.body = "gaand mara"
+    # mail.send(msg)
     return render_template('test.html')
 
 
@@ -108,7 +114,7 @@ def validate_fb_email(email, access_token):
         return response_msg('error', 'Could not connect to db')
 
     if len(cursor.items) == 0:
-        return response_msg('error', 'facebook not synced')
+        return response_msg('error', 'facebook not synced or user not registered')
 
     # if user has already synced fb email
     # check whether access token and email is valid
@@ -124,7 +130,7 @@ def validate_fb_email(email, access_token):
     if fb_email == email:
         return response_msg('success', 'OK')
     else:
-        return response_msg('error', 'facebook not synced')
+        return response_msg('error', 'invalid fb details')
 
 
 @app.route('/signup/', methods=['GET', 'POST', 'OPTIONS'])
@@ -339,7 +345,7 @@ def profile(name):
     # import ipdb; ipdb.set_trace();
     auth = auth_username(name)
     if auth != True:
-        return False
+        return render_template('404.html'), 404
     try:
         user = get_user_from_auth(request.cookies['auth_key'])
         # return redirect('/')
@@ -354,7 +360,7 @@ def profile(name):
     except:
         return response_msg('error', 'Could not connect to db')
 
-    return render_template('profile.html', user=cursor.items[0], login_user=user)
+    return render_template('profile.html', user=cursor.items[0], login_user=user, username=name)
 
 
 @app.route('/blog/new/<name>/', methods=['GET', 'POST'])
@@ -442,7 +448,7 @@ def user_settings(name):
 @app.route('/sync/<name>/', methods=['POST'])
 @login_required
 def sync_facebook(name):
-    # import ipdb; ipdb.set_trace();
+    import ipdb; ipdb.set_trace();
     try:
         form_data = json.loads(request.data)
     except:
@@ -468,10 +474,13 @@ def sync_facebook(name):
             rdb.row['username'] == name
             ).update({'fb_email': email, 'pic': pic}
             ).run(connection)
+        cursor = rdb.db(TODO_DB).table('user').filter(
+            rdb.row['username'] == name
+            ).run(connection)
     except:
         return response_msg('error', 'Could not connect to db')
 
-    return response_msg('success', 'OK')
+    return response_msg('success', 'OK', data=cursor.items[0])
 
 
 @app.route('/about/', methods=['GET'])
@@ -483,6 +492,7 @@ def about():
         user = ''
     return render_template('about_us.html', login_user=user), 200
 
+
 @app.route('/discuss/', methods=['GET'])
 def discuss():
     try:
@@ -492,14 +502,25 @@ def discuss():
         user = ''
     return render_template('discuss.html', login_user=user), 200
 
-@app.route('/problems/', methods=['GET'])
-def problems():
+
+@app.route('/problem/<id>/', methods=['GET'])
+def problems(id):
     try:
         user = get_user_from_auth(request.cookies['auth_key'])
         # return redirect('/')
     except:
         user = ''
-    return render_template('problems.html', login_user=user), 200
+    try:
+        connection = get_rdb_conn()
+        cursor = rdb.db(TODO_DB).table('problems').filter(
+            rdb.row['prob_id'] == int(id)
+            ).run(connection)
+    except:
+        return response_msg('error', 'Could not connect to db')
+
+    if len(cursor.items) == 0:
+        return render_template('404.html'), 404
+    return render_template('problems.html', problem=cursor.items[0], login_user=user), 200
 
 
 @app.route('/signin/facebook/', methods=['POST', 'OPTIONS'])
@@ -562,3 +583,65 @@ def check_auth_key():
         return response_msg('success', 'user authenticated', user=cursor.items[0])
     except:
         return response_msg('error', 'invalid auth_key')       
+
+
+@app.route('/get_user/<name>/', methods=['GET', 'POST', 'OPTIONS'])
+def get_user(name):
+    try:
+        connection = get_rdb_conn()
+        cursor = rdb.db(TODO_DB).table('user').filter(
+            rdb.row['username'] == name
+            ).run(connection)
+    except:
+        return response_msg('error', 'could not connect to db')
+
+    if len(cursor.items) == 0:
+        return response_msg('error', 'user doesn\'t exists')
+
+    user = cursor.items[0]
+    user.pop('id', None)
+    user.pop('passwd', None)
+    return response_msg('success', 'OK', data=user)
+
+
+@app.route('/problemset/', methods=['GET'])
+def problemset():
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    try:
+        connection = get_rdb_conn()
+        cursor = rdb.db(TODO_DB).table('problems').filter(
+            (rdb.row['prob_id'] >= 1) & (rdb.row['prob_id'] <= 10)
+            ).run(connection)
+
+        count = int(math.ceil(rdb.db(TODO_DB).table('problems').count().run(connection)/10.0))
+    except:
+        return response_msg('error', 'Could not connect to db')
+    # import ipdb; ipdb.set_trace()
+    return render_template('problem_set.html', problems=cursor.items, count=count, login_user=user), 200
+
+
+@app.route('/problemset/page/<page>/', methods=['GET'])
+def problemset_page(page):
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    try:
+        # import ipdb; ipdb.set_trace()
+        connection = get_rdb_conn()
+        cursor = rdb.db(TODO_DB).table('problems').filter(
+            (rdb.row['prob_id'] >= int(page)*10-9) & (rdb.row['prob_id'] <= int(page)*10)
+            ).run(connection)
+
+        count = int(math.ceil(rdb.db(TODO_DB).table('problems').count().run(connection)/10.0))
+        # count = 1
+    except Exception as e:
+        print e
+        return response_msg('error', 'Could not connect to db')
+    # import ipdb; ipdb.set_trace()
+    return render_template('problem_set.html', problems=cursor.items, count=count, login_user=user), 200
