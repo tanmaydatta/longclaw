@@ -1,10 +1,11 @@
 {% extends "parent.html" %} {% block child %}
 <div class="ui active tab raised segment">
-<div class="ui compact      menu">
-  <a href="/problem_set/" class="link item">Back to Problem Set</a>
-  <a class="link item">Submissions</a>
-</div>
-<br><br>
+    <div class="ui compact      menu">
+        <a href="/problem_set/" class="link item">Back to Problem Set</a>
+        <a class="link item">Submissions</a>
+    </div>
+    <br>
+    <br>
     <div class="two column equal height ui grid">
         <div class="eleven wide column ">
             <div class="ui first center aligned raised segment">
@@ -67,9 +68,9 @@
                         <div class="ui top attached teal large label">Submit</div>
                         <br>
                         <br>
-                        <div class="ui fluid floating labeled icon dropdown button">
+                        <div class="ui fluid floating right labeled icon dropdown button">
                             <i class="large code icon"></i>
-                            <span class="text">Language</span>
+                            <span class="text">Select Language</span>
                             <div class="menu">
                                 <!-- <div class="header">
                                     Search Issues
@@ -106,17 +107,16 @@
                             </div>
                         </div>
                         <br>
-                        <br>
                         <button class="positive ui button">Submit</button>
                     </div>
                     <div class="ui segment">
                         <div class="ui top attached teal large label">Problem Tags</div>
-                        <div id="tag1" class="ui label">
+                        <a href="" target="_blank" id="tag1" class="ui label">
                             dp
-                        </div>
-                        <div id="tag2" class="ui label">
+                        </a>
+                        <a href="" target="_blank" id="tag2" class="ui label">
                             dp
-                        </div>
+                        </a>
                     </div>
                     <div class="ui segment">
                         <div class="ui top attached teal large label">Study materials</div>

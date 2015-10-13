@@ -8,73 +8,104 @@
     <script src='/static/angular.min.js'></script>
     <script src='/static/angular-cookies.min.js'></script>
     <script src="/static/semantic/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="/static/markdown.min.js"></script>
     <!-- // <script src='/static/captcha.js'></script> -->
+   
 </head>
 
-<body>
-    <div class="ui padded grid">
-        <div class="ui form">
+<body ng-app="knuth">
+    <div class="ui padded container" style="margin-top:2em">
+        <div class="ui form" ng-controller="markdown">
             <div class="field">
                 <label>Problem Name</label>
-                <input type="text" name="probname">
+                <input type="text" name="probname" ng-model="content.name" ng-change="toHTML_name()">
             </div>
-            <br>
-            <label>Tags (max 5):</label>
-            <br>
-            <div class="fields">
-                <div class="field">
-                    <input type="text" name="tag">
-                </div>
-                <div class="field">
-                    <input type="text" name="tag">
-                </div>
-                <div class="field">
-                    <input type="text" name="tag">
-                </div>
-                <div class="field">
-                    <input type="text" name="tag">
-                </div>
-                <div class="field">
-                    <input type="text" name="tag">
-                </div>
-            </div>
-            <label>Difficulty Level:(Easy | Medium | Hard | Peer)</label>
+            
             <div class="field">
-                <input type="text" name="level">
+                <label>Time Limit (in sec.) </label>
+                <input type="number" name="time" ng-model="content.time">
             </div>
-            <!-- 
-            <div class="inline fields">
-                <label >Difficulty Level:(Easy | Medium | Hard | Peer)</label>
-                <div class="field">
-                    <div class="ui slider checkbox">
-                        <input type="radio" name="easy" checked="" tabindex="0" class="hidden">
-                        <label>Easy</label>
-                    </div>
+            <label>Tags: (feel free to add your own, and tags are searchable too)</label>
+            <br>
+            <div id="tag" class="ui fluid multiple search selection dropdown">
+                <input name="tags" type="hidden" ng-model="content.tags">
+                <i class="dropdown icon"></i>
+                <div class="default text">Tags</div>
+                <div class="menu">
+                    <!-- data-value is same as name -->
+                    <div class="item" data-value="adhoc">adhoc</div>
+                    <div class="item" data-value="backtracking">backtracking</div>
+                    <div class="item" data-value="bfs">bfs</div>
+                    <div class="item" data-value="bit">bit</div>
+                    <div class="item" data-value="combinatorics">combinatorics</div>
+                    <div class="item" data-value="dfs">dfs</div>
+                    <div class="item" data-value="dijkstra">dijkstra</div>
+                    <div class="item" data-value="dp">dp</div>
+                    <div class="item" data-value="factorial">factorial</div>
+                    <div class="item" data-value="gcd">gcd</div>
+                    <div class="item" data-value="graph-theory"> graph-theory</div>
+                    <div class="item" data-value="heap">heap</div>
+                    <div class="item" data-value="knapsack">knapsack</div>
+                    <div class="item" data-value="kruskal">kruskal</div>
+                    <div class="item" data-value="lis">lis</div>
+                    <div class="item" data-value="map">map</div>
+                    <div class="item" data-value="memoization">memoization</div>
+                    <div class="item" data-value="preprocessing">preprocessing</div>
+                    <div class="item" data-value="recursion">recursion</div>
+                    <div class="item" data-value="segment-tree">segment-tree</div>
+                    <div class="item" data-value="sieve">sieve</div>
+                    <div class="item" data-value="sorting">sorting</div>
+                    <div class="item" data-value="sqrt-decomp">sqrt-decomp</div>
+                    <div class="item" data-value="stack">stack</div>
+                    <div class="item" data-value="trie">trie</div>
+                    <div class="item" data-value="tree">tree</div>
+                    <div class="item" data-value="z-algorithm">z-algorithm</div>
                 </div>
-                <div class="field">
-                    <div class="ui slider checkbox">
-                        <input type="radio" name="medium" tabindex="0" class="hidden">
-                        <label>Medium</label>
-                    </div>
+            </div>
+            <br>
+            <label>Difficulty Level:</label>
+            <div id="level" class="ui selection dropdown">
+                <input type="hidden" name="level" ng-model="content.level">
+                <i class="dropdown icon"></i>
+                <div class="default text">Difficulty Level:</div>
+                <div class="menu">
+                    <div class="item" data-value="easy">easy</div>
+                    <div class="item" data-value="medium">medium</div>
+                    <div class="item" data-value="hard">hard</div>
+                    <div class="item" data-value="peer">peer</div>
                 </div>
-                <div class="field">
-                    <div class="ui slider checkbox">
-                        <input type="radio" name="hard" tabindex="0" class="hidden">
-                        <label>Hard</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui slider checkbox">
-                        <input type="radio" name="peer" tabindex="0" class="hidden">
-                        <label>Peer</label>
-                    </div>
-                </div>
-            </div> -->
+            </div>
             <div class="field">
                 <label>Problem</label>
-                <textarea rows="18  "></textarea>
+                <textarea rows="12" ng-model="content.statement" ng-change="toHTML()"></textarea>
             </div>
-            <button id="" class="ui green button" type="submit">Submit</button>
+            <div class="ui raised segment" id="m2html">
+            </div>
+            <div class="field">
+                <label>Input</label>
+                <textarea rows="2" ng-model="content.ip" ng-change="toHTML_ip()"></textarea>
+            </div>
+            <div class="ui segment" id="m2html_ip">
+            </div>
+            <div class="field">
+                <label>Output</label>
+                <textarea rows="2" ng-model="content.op" ng-change="toHTML_op()"></textarea>
+            </div>
+            <div class="ui segment" id="m2html_op">
+            </div>
+            <div class="field">
+                <label>Sample Input</label>
+                <textarea rows="2" ng-model="content.sip" ng-change="toHTML_sip()"></textarea>
+            </div>
+            <div class="ui segment" id="m2html_sip">
+            </div>
+            <div class="field">
+                <label>Sample Output</label>
+                <textarea rows="2" ng-model="content.sop" ng-change="toHTML_sop()"></textarea>
+            </div>
+            <div class="ui segment" id="m2html_sop">
+            </div>
+            <button id="submit" class="ui green button" type="submit" ng-click="submitpro()" style="margin-bottom:50px">Submit</button>
         </div>
     </div>
 </body>
