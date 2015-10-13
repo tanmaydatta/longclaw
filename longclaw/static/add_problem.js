@@ -1,0 +1,3 @@
+$('.ui.slider.checkbox')
+  .checkbox()
+;
