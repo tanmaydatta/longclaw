@@ -11,12 +11,13 @@ import hashlib
 from facebook import GraphAPI, GraphAPIError
 from auth import *
 from cors import *
-import ipdb
 import math
 from flask.ext.mail import Message
 from mail_config import *
 from longclaw import mail
 import os
+from markdown2 import markdown
+
 
 @app.route('/xyz/')
 def test():
@@ -111,7 +112,8 @@ def validate_fb_email(email, access_token):
         return response_msg('error', 'Could not connect to db')
 
     if len(cursor.items) == 0:
-        return response_msg('error', 'facebook not synced or user not registered')
+        return response_msg('error',
+            'facebook not synced or user not registered')
 
     # if user has already synced fb email
     # check whether access token and email is valid
@@ -520,24 +522,108 @@ def problems(id):
     return render_template('problems.html', problem=cursor.items[0], login_user=user), 200
 
 
-@app.route('/add_problem/', methods=['GET'])
+@app.route('/add_problem/', methods=['GET', 'POST'])
+@admin_required
 def add_problem():
     try:
         user = get_user_from_auth(request.cookies['auth_key'])
         # return redirect('/')
     except:
         user = ''
-    return render_template('add_problem.html', login_user=user), 200
+    if request.method == 'GET':
+        return render_template('add_problem.html'), 200
+    elif request.method == 'POST':
+        import ipdb; ipdb.set_trace()
+        try:
+            form_data = json.loads(request.data)
+        except:
+            return response_msg('error', 'data not complete')
+
+        try:
+            name = form_data['name']
+            tl = form_data['time']
+            tags = form_data['tags'].split(',')
+            statement = markdown(form_data['statement'])
+            ip = markdown(form_data['ip'])
+            op = markdown(form_data['op'])
+            sip = markdown(form_data['sip'])
+            sop = markdown(form_data['sop'])
+            level = form_data['level']
+
+        except:
+            return response_msg('error', 'data not complete')
 
 
-@app.route('/admin/', methods=['GET'])
+        try:
+            connection = get_rdb_conn()
+            prob_id = rdb.db(TODO_DB).table("problems").max(
+                'prob_id'
+                ).run(connection)
+            prob_id = prob_id['prob_id'] + 1
+            new_user = rdb.db(TODO_DB).table("problems").insert({
+                "name": name,
+                "level": level,
+                "input": ip,
+                "output": op,
+                "prob_id": prob_id,
+                "sample_input": sip,
+                "sample_output": sop,
+                "statement": statement,
+                "tags": tags,
+                "time_limit": float(tl)
+            }).run(connection)
+        except:
+            return response_msg('error', 'error inserting in db')
+        try:
+            if new_user['inserted'] != 1:
+                return response_msg('error', 'error inserting in db')
+        except:
+            return response_msg('error', 'error inserting in db')
+
+        # return response_msg('success', 'OK')
+        return response_msg('success', 'OK')
+
+    else:
+        return response_msg('error', 'only GET/POST')
+
+
+@app.route('/admin/', methods=['GET', 'POST'])
 def admin():
-    try:
-        user = get_user_from_auth(request.cookies['auth_key'])
-        # return redirect('/')
-    except:
-        user = ''
-    return render_template('admin.html', login_user=user), 200
+    # import ipdb; ipdb.set_trace()
+    if request.method == 'GET':
+        return render_template('admin.html'), 200
+
+    elif request.method == 'POST':
+        try:
+            form_data = json.loads(request.data)
+        except:
+            return response_msg('error', 'data not complete')
+
+        try:
+            user = form_data['user']
+            passwd = hashlib.sha224(form_data['passwd']).hexdigest()
+        except:
+            return response_msg('error', 'data not complete')
+
+        try:
+            connection = get_rdb_conn()
+            cursor = rdb.db(TODO_DB).table('user').filter(
+                rdb.row['username'] == user
+                ).run(connection)
+        except:
+            return response_msg('error', 'Could not connect to db')
+
+        if len(cursor.items) == 0:
+            return response_msg('error', "User doesn't exists")
+
+        db_pass = cursor.items[0]['passwd']
+        if db_pass != passwd:
+            return response_msg('error', 'Passwords do not match')
+
+        return response_msg('success', 'logged in', admin_key=gen_auth_key(user), user=user)
+
+    else:
+        return response_msg('error', 'only GET/POST')
 
 
 @app.route('/signin/facebook/', methods=['POST', 'OPTIONS'])
@@ -714,7 +800,7 @@ def forgot():
     # import ipdb; ipdb.set_trace()
     if request.method == 'POST':
         try:
-            form_data = json.loads(request.data)
+            form_data = request.form
         except:
             return response_msg('error', 'data not complete')
 
@@ -746,10 +832,10 @@ def forgot():
 
         body = ('Please click the following link to change your password.\n' + 'http://'
             '' + host + ':5000/change_pass/' + token + '/')
-        # try:
-        #     send_mail(body, email)
-        # except:
-        #     return response_msg('error', 'could not send an email')
+        try:
+            send_mail(body, email)
+        except:
+            return response_msg('error', 'could not send an email')
 
         return  response_msg('success', 'OK', token=token)
 
