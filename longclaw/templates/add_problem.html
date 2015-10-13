@@ -28,7 +28,7 @@
             <label>Tags: (feel free to add your own, and tags are searchable too)</label>
             <br>
             <div id="tag" class="ui fluid multiple search selection dropdown">
-                <input name="tags" type="hidden" ng-model="content.tags">
+                <input id="tags" name="tags" type="hidden" ng-model="content.tags">
                 <i class="dropdown icon"></i>
                 <div class="default text">Tags</div>
                 <div class="menu">
@@ -38,34 +38,22 @@
                     <div class="item" data-value="bfs">bfs</div>
                     <div class="item" data-value="bit">bit</div>
                     <div class="item" data-value="combinatorics">combinatorics</div>
-                    <div class="item" data-value="dfs">dfs</div>
-                    <div class="item" data-value="dijkstra">dijkstra</div>
                     <div class="item" data-value="dp">dp</div>
                     <div class="item" data-value="factorial">factorial</div>
-                    <div class="item" data-value="gcd">gcd</div>
                     <div class="item" data-value="graph-theory"> graph-theory</div>
                     <div class="item" data-value="heap">heap</div>
-                    <div class="item" data-value="knapsack">knapsack</div>
-                    <div class="item" data-value="kruskal">kruskal</div>
-                    <div class="item" data-value="lis">lis</div>
                     <div class="item" data-value="map">map</div>
                     <div class="item" data-value="memoization">memoization</div>
                     <div class="item" data-value="preprocessing">preprocessing</div>
                     <div class="item" data-value="recursion">recursion</div>
                     <div class="item" data-value="segment-tree">segment-tree</div>
-                    <div class="item" data-value="sieve">sieve</div>
                     <div class="item" data-value="sorting">sorting</div>
-                    <div class="item" data-value="sqrt-decomp">sqrt-decomp</div>
-                    <div class="item" data-value="stack">stack</div>
-                    <div class="item" data-value="trie">trie</div>
-                    <div class="item" data-value="tree">tree</div>
-                    <div class="item" data-value="z-algorithm">z-algorithm</div>
                 </div>
             </div>
             <br>
             <label>Difficulty Level:</label>
             <div id="level" class="ui selection dropdown">
-                <input type="hidden" name="level" ng-model="content.level">
+                <input type="hidden" id="prob_level" name="level" ng-model="content.level">
                 <i class="dropdown icon"></i>
                 <div class="default text">Difficulty Level:</div>
                 <div class="menu">

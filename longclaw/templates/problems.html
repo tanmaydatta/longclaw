@@ -1,19 +1,11 @@
 {% extends "parent.html" %} {% block child %}
 <div class="ui active tab raised segment">
-<<<<<<< HEAD
     <div class="ui compact      menu">
         <a href="/problem_set/" class="link item">Back to Problem Set</a>
         <a class="link item">Submissions</a>
     </div>
     <br>
     <br>
-=======
-<div class="ui compact      menu">
-  <a href="/problemset/" class="link item">Back to Problem Set</a>
-  <a class="link item">Submissions</a>
-</div>
-<br><br>
->>>>>>> b6845f06fff3be1bea7da83b106e163fe08a09d4
     <div class="two column equal height ui grid">
         <div class="eleven wide column ">
             <div class="ui first center aligned raised segment">
@@ -40,27 +32,27 @@
             <div class="ui basic label">Problem Statement</div>
             <br>
             <br>
-            <p id="problem"> {{problem.statement}}
+            <p id="problem"> {{problem.statement|safe}}
             </p>
             <div class="ui divider"></div>
             <label class="ui basic label">Input:</label>
-            <p i="input">{{problem.input}}</p>
+            <p i="input">{{problem.input|safe}}</p>
             <div class="ui divider"></div>
             <label class="ui basic label">Output:</label>
-            <p i="output">{{problem.output}}</p>
+            <p i="output">{{problem.output|safe}}</p>
             <div class="ui divider"></div>
             <label>Sample Tests:</label>
             <div class="ui segment">
                 <div class="ui raised segment" id="ip_test">
                     <div class="ui top attached label">INPUT</div>
                     <div class="ui container">
-                        {{problem.sample_input}}
+                        {{problem.sample_input|safe}}
                     </div>
                 </div>
                 <div class="ui raised segment" id="op_test">
                     <div class="ui top attached label">OUTPUT</div>
                     <div class="ui container">
-                        {{problem.sample_output}}
+                        {{problem.sample_output|safe}}
                     </div>
                 </div>
             </div>
@@ -117,12 +109,11 @@
                     </div>
                     <div class="ui segment">
                         <div class="ui top attached teal large label">Problem Tags</div>
+                        {% for tag in problem.tags %}
                         <a href="" target="_blank" id="tag1" class="ui label">
-                            dp
+                            {{tag}}
                         </a>
-                        <a href="" target="_blank" id="tag2" class="ui label">
-                            dp
-                        </a>
+                        {% endfor %}
                     </div>
                     <div class="ui segment">
                         <div class="ui top attached teal large label">Study materials</div>

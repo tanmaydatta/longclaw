@@ -59,3 +59,5 @@ rethinkdb_data
 
 uwsgi*
 nginx*
+longclaw/mail_config.py
+

@@ -13,23 +13,26 @@
 
 <body ng-app="admin">
     <div class="ui container" style="margin-left:30%;margin-right:30%;margin-top:3%;margin-bottom:3%;width:600px">
-        <div id='form' class="ui form" ng-controller="adminctrl">
+        <div id='form' class="ui form" ng-controller="adminctrl" ng-submit="form_validate()">
             <h2 class="ui dividing header" style="text-align: center;margin-top: 5px;">Admin Login</h2>
             <br>
             <div class="field">
                 <div class="two fields">
                     <div class="field">
                         <div class="ui left icon  input">
-                            <input type="text" name="uname" ng-model="user.uname" placeholder="User Name">
+                            <input type="text" name="uname" ng-model="user.user" placeholder="User Name">
                             <i class="user icon"></i>
                         </div>
                     </div>
                     <div class="field">
-                        <input type="password" name="pwd" ng-model="user.pwd" placeholder="Password">
+                        <input type="password" name="pwd" ng-model="user.passwd" placeholder="Password">
                     </div>
                 </div>
-            </div>
-            <button class="ui primary button" style="width:100%;margin-top:2%" ng-click="adminlogin">
+            </div><br>
+            <div class="ui grid container">
+                <div class="ui error message"></div>
+            </div><br>  
+            <button class="ui primary button" style="width:100%;margin-top:2%" ng-click="adminlogin()">
             Login
             </button>
         </div>

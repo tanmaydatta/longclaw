@@ -4,6 +4,7 @@ import fcntl
 import struct
 import sys
 
+
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     return socket.inet_ntoa(fcntl.ioctl(
@@ -15,22 +16,21 @@ def get_ip_address(ifname):
 
 host = ''
 if len(sys.argv) <= 1:
-		host = ''
+        host = ''
 else:
-	if sys.argv[1] == 'ip':
-		try:
-			host = get_ip_address('wlan0')
-		except:
-			host = get_ip_address('eth0')
-	else:
-		host = ''
+    if sys.argv[1] == 'ip':
+        try:
+            host = get_ip_address('wlan0')
+        except:
+            host = get_ip_address('eth0')
+    else:
+        host = ''
 
 if host == '':
-	host = 'localhost'
+    host = 'localhost'
 
 
 if __name__ == '__main__':
-	
-	app.run(
+    app.run(
         host=host,
         debug=True)

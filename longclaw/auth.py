@@ -22,7 +22,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         # import ipdb; ipdb.set_trace();
-    	try:
+        try:
             if request.headers.get('key'):
                 key = request.headers.get('key')
             else:
@@ -37,9 +37,25 @@ def login_required(f):
             else:
                 user = get_user_from_auth(request.cookies['auth_key'])
             if user == kwargs['name']:
-            	return f(*args, **kwargs)
+                return f(*args, **kwargs)
             else:
-            	return response_msg('error', 'user not authorized')
+                return response_msg('error', 'user not authorized')
+        except:
+            return response_msg('error', 'some error occured')
+        
+    return decorated_function
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # import ipdb; ipdb.set_trace();
+        try:
+            user = get_user_from_auth(request.cookies['admin_key'])
+            if user == 'admin':
+                return f(*args, **kwargs)
+            else:
+                return response_msg('error', 'user not authorized')
         except:
             return response_msg('error', 'some error occured')
         

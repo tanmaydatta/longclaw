@@ -12,7 +12,7 @@ adminapp.controller("adminctrl", ['$scope', '$http', '$element', '$cookies',
             if (this.isInvalid()) {
                 return;
             }
-            this.login();
+            this.adminlogin();
         }
         $scope.adminlogin = function() {
             $('#form').addClass('loading');
@@ -32,7 +32,7 @@ adminapp.controller("adminctrl", ['$scope', '$http', '$element', '$cookies',
                 } else {
                     // if successful, bind success message to message
                     // alert('success');
-                    $cookies.put('auth_key', data['auth_key'], {
+                    $cookies.put('admin_key', data['admin_key'], {
                         'path': '/'
                     });
                     $(location).attr('href', '/add_problem');

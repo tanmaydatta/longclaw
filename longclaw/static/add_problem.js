@@ -18,8 +18,8 @@ $('#tag')
     });
 
 var knuth = angular.module("knuth", []);
-knuth.controller("markdown", ['$scope',
-    function($scope) {
+knuth.controller("markdown", ['$scope', '$http',
+    function($scope, $http) {
         $scope.toHTML = function() {
             $('#m2html').text('');
             $('#m2html').append(markdown.toHTML($scope.content.statement));
@@ -48,11 +48,12 @@ knuth.controller("markdown", ['$scope',
         }
 
          $scope.submitpro= function() {
-         	console.log($scope.content);
 
-         		// $('#form').addClass('loading');
+            $('#form').addClass('loading');
             var dataObj = $scope.content;
-            
+            dataObj['tags'] = $('#tags').val();
+            dataObj['level'] = $('#prob_level').val();
+         	console.log(dataObj);
             $http({
                 method: 'POST',
                 url: '/add_problem/',
@@ -70,10 +71,7 @@ knuth.controller("markdown", ['$scope',
                 } else {
                     // if successful, bind success message to message
                     // alert('success');
-                    $cookies.put('auth_key', data['auth_key'], {
-                        'path': '/'
-                    });
-                    $(location).attr('href', '/');
+                    $(location).attr('href', '/add_problem');
                 }
 
             });
