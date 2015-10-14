@@ -135,7 +135,7 @@ def validate_fb_email(email, access_token):
 @app.route('/signup/', methods=['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*', headers=['Content-Type', 'auth_key'])
 def signup():
-    import ipdb; ipdb.set_trace();
+    #import ipdb; ipdb.set_trace();
     if request.method == 'GET':
         return render_template("signup.html")
     elif request.method == 'POST':
@@ -238,7 +238,7 @@ def signup():
             return response_msg('error', 'Username is already taken')
 
         # finally inserting in db
-        # import ipdb; ipdb.set_trace()
+        # #import ipdb; ipdb.set_trace()
         try:
             new_user = rdb.db(TODO_DB).table("user").insert({
                 "fname": fname,
@@ -270,7 +270,7 @@ def signup():
 @app.route('/signin/', methods=['GET', 'POST', 'OPTIONS'])
 @crossdomain(origin='*', headers=['Content-Type', 'auth_key'])
 def signin():
-    # import ipdb; ipdb.set_trace()
+    # #import ipdb; ipdb.set_trace()
     remoteip = request.remote_addr
     if request.method == 'GET':
         try:
@@ -324,7 +324,7 @@ def signin():
 
 
 def auth_username(name):
-    # import ipdb; ipdb.set_trace();
+    # #import ipdb; ipdb.set_trace();
     try:
         connection = get_rdb_conn()
         cursor = rdb.db(TODO_DB).table('user').filter(
@@ -341,7 +341,7 @@ def auth_username(name):
 
 @app.route('/profile/<name>/', methods=['GET'])
 def profile(name):
-    # import ipdb; ipdb.set_trace();
+    # #import ipdb; ipdb.set_trace();
     auth = auth_username(name)
     if auth != True:
         return render_template('404.html'), 404
@@ -374,7 +374,7 @@ def user_settings(name):
     if auth != True:
         return render_template('404.html'), 404
 
-    # import ipdb;ipdb.set_trace()
+    # #import ipdb;ipdb.set_trace()
     if request.method == 'GET':
         try:
             user = get_user_from_auth(request.cookies['auth_key'])
@@ -392,7 +392,7 @@ def user_settings(name):
 
         return render_template('settings.html',pic=pic, username=name, login_user=user, app_id=FB_APP_ID)
     else:
-        # import ipdb; ipdb.set_trace();
+        # #import ipdb; ipdb.set_trace();
         try:
             form_data = json.loads(request.data)
             passwd = form_data['passwd']
@@ -447,7 +447,7 @@ def user_settings(name):
 @app.route('/sync/<name>/', methods=['POST'])
 @login_required
 def sync_facebook(name):
-    import ipdb; ipdb.set_trace();
+    #import ipdb; ipdb.set_trace();
     try:
         form_data = json.loads(request.data)
     except:
@@ -456,7 +456,7 @@ def sync_facebook(name):
     try:
         graph = GraphAPI(form_data['access_token'])
         try:
-            # import ipdb; ipdb.set_trace();
+            # #import ipdb; ipdb.set_trace();
             email = graph.get_object('me', fields='email')['email']
             pic = graph.get_object('me/picture', width='400', height='400')['url']
             print pic
@@ -533,7 +533,7 @@ def add_problem():
     if request.method == 'GET':
         return render_template('add_problem.html'), 200
     elif request.method == 'POST':
-        import ipdb; ipdb.set_trace()
+        #import ipdb; ipdb.set_trace()
         try:
             form_data = json.loads(request.data)
         except:
@@ -589,7 +589,7 @@ def add_problem():
 
 @app.route('/admin/', methods=['GET', 'POST'])
 def admin():
-    # import ipdb; ipdb.set_trace()
+    # #import ipdb; ipdb.set_trace()
     if request.method == 'GET':
         return render_template('admin.html'), 200
 
@@ -629,7 +629,7 @@ def admin():
 @app.route('/signin/facebook/', methods=['POST', 'OPTIONS'])
 @crossdomain(origin='*', headers='Content-Type')
 def fb_signin():
-    import ipdb; ipdb.set_trace()
+    #import ipdb; ipdb.set_trace()
     try:
         form_data = json.loads(request.data)
     except:
@@ -723,7 +723,7 @@ def problemset():
         count = int(math.ceil(rdb.db(TODO_DB).table('problems').count().run(connection)/10.0))
     except:
         return response_msg('error', 'Could not connect to db')
-    # import ipdb; ipdb.set_trace()
+    # #import ipdb; ipdb.set_trace()
     return render_template('problem_set.html', problems=cursor.items, count=count, login_user=user), 200
 
 
@@ -735,7 +735,7 @@ def problemset_page(page):
     except:
         user = ''
     try:
-        # import ipdb; ipdb.set_trace()
+        # #import ipdb; ipdb.set_trace()
         connection = get_rdb_conn()
         cursor = rdb.db(TODO_DB).table('problems').filter(
             (rdb.row['prob_id'] >= int(page)*10-9) & (rdb.row['prob_id'] <= int(page)*10)
@@ -746,7 +746,7 @@ def problemset_page(page):
     except Exception as e:
         print e
         return response_msg('error', 'Could not connect to db')
-    # import ipdb; ipdb.set_trace()
+    # #import ipdb; ipdb.set_trace()
     return render_template('problem_set.html', problems=cursor.items, count=count, login_user=user), 200
 
 
@@ -795,9 +795,10 @@ def change_pass(token):
     else:
         return response_msg('error', 'only GET/POST')
 
+
 @app.route('/forgot/', methods=['POST'])
 def forgot():
-    # import ipdb; ipdb.set_trace()
+    # #import ipdb; ipdb.set_trace()
     if request.method == 'POST':
         try:
             form_data = request.form
