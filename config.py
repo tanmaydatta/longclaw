@@ -9,7 +9,7 @@ TODO_DB = 'knuth'
 rds = Redis()
 
 DEFAULT_PIC = 'https://github.com/identicons/'
-FB_APP_ID = 161142620896547
+FB_APP_ID = 122742198082740
 
 CAPTCHA_SECRET = '6LesFgwTAAAAAIy1YjMlYaWJ27QbqXP4Sm3tcDpI'
 
