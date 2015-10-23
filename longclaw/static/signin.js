@@ -70,7 +70,7 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
         $scope.fb_login = function() {
             FB.login(function(response) {
                 // handle the response
-                sync_with_facebook();
+                this.signwithfb(response);
             }, {
                 scope: 'public_profile,email,user_managed_groups'
             });
@@ -126,6 +126,9 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
                         });
                     }
                 });
+            }
+            else {
+                console.log(response);
             }
         }
     }
