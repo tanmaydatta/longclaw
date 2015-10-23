@@ -70,7 +70,7 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
         $scope.fb_login = function() {
             FB.login(function(response) {
                 // handle the response
-                this.signwithfb(response);
+                $scope.signwithfb(response);
             }, {
                 scope: 'public_profile,email,user_managed_groups'
             });
