@@ -50,6 +50,7 @@ signinapp.controller("formctrl", ['$scope', '$http', '$element', '$cookies',
                     // if not successful, bind errors to error variables
                     $('#form').addClass('error');
                     $('.ui.error.message').html('<ul class="list"><li>' + data['msg'] + '</li></ul>');
+                    grecaptcha.reset();
                 } else {
                     // if successful, bind success message to message
                     // alert('success');
@@ -126,8 +127,7 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
                         });
                     }
                 });
-            }
-            else {
+            } else {
                 console.log(response);
             }
         }

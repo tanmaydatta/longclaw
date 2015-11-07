@@ -1,3 +1,5 @@
+$('#discuss').addClass("active item");
+
 semantic.visiblity = {};
 
 // ready event

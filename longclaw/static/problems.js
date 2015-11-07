@@ -1,4 +1,4 @@
-$('#problems').addClass('active');
+$('#problems').addClass('active item');
 
 $('.ui.sticky')
     .sticky({

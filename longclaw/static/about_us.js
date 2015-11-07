@@ -1,3 +1,4 @@
+$('#about_us').addClass("active item");
 
 $('.image').dimmer({
     on: 'hover'
