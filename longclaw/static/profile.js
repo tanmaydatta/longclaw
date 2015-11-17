@@ -1,0 +1,1 @@
+$('#ratings').addClass("active item");

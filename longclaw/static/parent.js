@@ -1,3 +1,4 @@
+
 $('.menu .item')
     .tab();
 $('.ui.dropdown')
@@ -34,13 +35,13 @@ $(document).ready(function() { /*code here*/
 var knuth = angular.module("knuth", ['ngCookies']);
 knuth.controller("signout", ['$scope', '$cookies',
     function($scope, $cookies) {
-      $scope.signout = function() {
-        $cookies.remove('auth_key', {
-            'path': '/'
-        });
-        location.reload();
-      }
-        // $scope.content="hello";
-        // $scope.content = $scope.content + 'vvv';
+        $scope.signout = function() {
+                $cookies.remove('auth_key', {
+                    'path': '/'
+                });
+                location.reload();
+            }
+            // $scope.content="hello";
+            // $scope.content = $scope.content + 'vvv';
     }
-]  );
+]);
