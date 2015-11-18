@@ -1,104 +1,119 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script type="text/javascript" src="/static/angular.min.js"></script>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <title>JIIT-Knuth Hub</title>
-        <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
-        <script src='/static/angular-cookies.min.js'></script>
-        <script type="text/javascript" src="/static/jquery.min.js"></script>
-        <script type="text/javascript" src="/static/markdown.min.js"></script>
-        <script src="/static/semantic/dist/semantic.min.js"></script>
-        <script type="text/javascript" src="/static/parent.js"></script>
-        {% block head %}{% endblock %}
-    </head>
-    <script type="text/javascript">
-    //   var blogapp = angular.module("newblog", ["ngCookies"]);
-    // blogapp.controller("blogctrl", ['$scope', '$http', '$element', '$cookies',
-    //     function($scope, $http, $element, $cookies) {
-    //       $scope.texta=" ";
-    //     }
-    //     ]);
-    </script>
-    <body ng-app="knuth">
-        <!-- this segment is containing the whole content -->
-        <div>
-            <div id="stick_it" class="ui container inverted clearing segment" style="background:white; width:1200px">
-                <div class="ui" style="width: 100% !important; height: 43px !important; left: 312px;">
-                    <a href="/" class="right rounded spaced image">
-                        <img src="/static/images/logo.png" height="50" width="200">
-                        <!-- Knuth-JIIT -->
+
+<head>
+    <script type="text/javascript" src="/static/angular.min.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>JIIT-Programming Hub</title>
+    <link rel="stylesheet" type="text/css" href="/static/semantic/dist/semantic.min.css">
+    <script src='/static/angular-cookies.min.js'></script>
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/markdown.min.js"></script>
+    <script src="/static/semantic/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="/static/dirPagination.js"></script>
+    <script type="text/javascript" src="/static/parent.js"></script>
+    <script type="text/javascript" src="/static/tablesort.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-ui.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.10.3/semantic.min.css"> -->
+    <!-- // <script src="/static/mithril.js"></script> -->
+    <!-- // <script src="/static/Pagination.js"></script>/ -->
+    {% block head %}{% endblock %}
+</head>
+<script type="text/javascript">
+//   var blogapp = angular.module("newblog", ["ngCookies"]);
+// blogapp.controller("blogctrl", ['$scope', '$http', '$element', '$cookies',
+//     function($scope, $http, $element, $cookies) {
+//       $scope.texta=" ";
+//     }
+//     ]);
+</script>
+
+<body ng-app="knuth">
+    <!-- this segment is containing the whole content -->
+    <div>
+        <div id="stick_it" class="ui container  clearing segment" style="background:white; width:1200px">
+            <div class="ui" style="width: 100% !important; height: 43px !important; left: 312px;">
+                <a href="/" class="right rounded spaced image">
+                    <img src="/static/images/logo.png" height="50" width="200">
+                    <!-- Knuth-JIIT -->
+                </a>
+                <div ng-controller="signout" class="ui right floated buttons">
+                    <a class="ui circular labeled icon  button" tabindex="0" href="">
+                        <i class="android large green icon"></i> Download App
                     </a>
-                    <div ng-controller="signout" class="ui right floated buttons">
-                        {% if login_user %}
-                            <a href="/profile/{{login_user}}" class="ui blue animated icon button" tabindex="0">
-                                <div class="visible content">{{login_user}}</div>
-                                <div class="hidden content">
-                                    <i class="medium sign in icon"></i>
-                                </div>
-                            </a>
-                            <a ng-click="signout()" class="ui green animated icon button" tabindex="0">
-                                <div class="visible content">Sign Out</div>
-                                <div class="hidden content">
-                                    <i class="medium reply all icon"></i>
-                                </div>
-                            </a>
-                        {% else %}
-                            <a href="/signin" class="ui blue animated icon button" tabindex="0">
-                                <div class="visible content">Login</div>
-                                <div class="hidden content">
-                                    <i class="medium sign in icon"></i>
-                                </div>
-                            </a>
-                            <a href="/signup" class="ui green animated icon button" tabindex="0">
-                                <div class="visible content">Sign Up</div>
-                                <div class="hidden content">
-                                    <i class="medium reply all icon"></i>
-                                </div>
-                            </a>
-                        {% endif %}
-                        
-                        <!-- <div class="or"></div> -->
-                        
-                    </div>
+                     {% if login_user %}
+                    <a href="/profile/{{login_user}}" class="ui blue animated icon button" tabindex="0">
+                        <div class="visible content">{{login_user}}</div>
+                        <div class="hidden content">
+                            <i class="medium sign in icon"></i>
+                        </div>
+                    </a>
+                    <a ng-click="signout()" class="ui green animated icon button" tabindex="0">
+                        <div class="visible content">Sign Out</div>
+                        <div class="hidden content">
+                            <i class="medium reply all icon"></i>
+                        </div>
+                    </a>
+                    {% else %}
+                    <a href="/signin" class="ui blue animated icon button" tabindex="0">
+                        <div class="visible content">Login</div>
+                        <div class="hidden content">
+                            <i class="medium sign in icon"></i>
+                        </div>
+                    </a>
+                    <a href="/signup" class="ui green animated icon button" tabindex="0">
+                        <div class="visible content">Sign Up</div>
+                        <div class="hidden content">
+                            <i class="medium reply all icon"></i>
+                        </div>
+                    </a>
+                    {% endif %}
+                    <!-- <div class="or"></div> -->
                 </div>
-                <div id="clear_menu" class="ui sticky large icon menu">
-                    <div class="ui container" id="main_menu">
-                        <a class="active item" href="/">
-                            <i class="home icon"></i> Home
-                        </a>
-                        <a class="item" href="/ratings">
-                            <i class="student icon"></i> Ratings
-                        </a>
-                        <a class="item" href="/events">
-                            <i class="calendar icon"></i> Events
-                        </a>
-                        <a class="item" href="/discuss">
-                            <i class="feed   icon"></i>
-                            <!-- announcement -->
-                            Discuss
-                        </a>
-                        <a class="item" href="/problemset">
-                            <i class="code icon"></i> Problems
-                        </a>
-                        <a class="item" href="/facebook">
-                            <i class="facebook icon"></i> Facebook
-                        </a>
-                        <a class="item" href="/about">
-                            <i class="smile icon"></i> About Us
-                        </a>
-                    </div>
+            </div>
+                 <div id="clear_menu" class="ui inverted fixed sticky labeled icon large pointing menu">
+            <!-- <div id="clear_menu" class="ui sticky large icon menu"> -->
+                <div class="ui container" id="main_menu">
+                    <a id="home" class="item" href="/">
+                        <i class="home icon"></i> Home
+                    </a>
+                    <a id="profile" class="item" href="/profile/{{login_user}}">
+                        <i class="user icon"></i> Profile
+                    </a>
+                    <a id="ratings" class="item" href="/ratings">
+                        <i class="student icon"></i> Ratings
+                    </a>
+                    <a id="events" class="item" href="/events">
+                        <i class="calendar icon"></i> Events
+                    </a>
+                    <a id="discuss" class="item" href="/discuss">
+                        <i class="feed   icon"></i> Forum
+                        <!-- announcement -->
+                        <!-- Discuss -->
+                    </a>
+                    <a id="problems" class="item" href="/problemset">
+                        <i class="code icon"></i> Problems
+                    </a>
+                    <a id="facebook" class="item" href="/facebook">
+                        <i class="facebook blue icon"></i> Facebook
+                    </a>
+                    <a id="about_us" class="item" href="/about">
+                        <i class="smile icon"></i> About Us
+                    </a>
                 </div>
-                {% block child %}{% endblock %}
-            </div></div>
-            {% block end %}{% endblock %}
-        </body>
-        <script type="text/javascript">
-        $('#clear_menu')
-        .sticky({
+            </div>
+            {% block child %}{% endblock %}
+        </div>
+    </div>
+    {% block end %}{% endblock %}
+</body>
+<script type="text/javascript">
+$('#clear_menu')
+    .sticky({
         context: '#stick_it'
-        });
-        </script>
-    </html>
+    });
+</script>
+
+</html>
