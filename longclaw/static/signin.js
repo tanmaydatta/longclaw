@@ -56,7 +56,7 @@ signinapp.controller("formctrl", ['$scope', '$http', '$element', '$cookies',
                     $cookies.put('auth_key', data['auth_key'], {
                         'path': '/'
                     });
-                    $(location).attr('href', '/');
+                    $(location).attr('href', '/profile/' + data['user'] + '/');
                 }
 
             });
@@ -83,6 +83,7 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
             // for FB.getLoginStatus().
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
+                alert('h');
                 this.signwithfb(response);
             } else {
                 this.fb_login();
@@ -121,7 +122,7 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
                                 $cookies.put('auth_key', data['auth_key'], {
                                     'path': '/'
                                 });
-                                $(location).attr('href', '/');
+                                $(location).attr('href', '/profile/' + data['user'] + '/');
                             }
                         });
                     }

@@ -35,7 +35,7 @@ signupapp.controller("formctrl", ['$scope', '$http', '$element', '$cookies',
                     $cookies.put('auth_key', data['auth_key'], {
                         'path': '/'
                     });
-                    $(location).attr('href', '/');
+                    $(location).attr('href', '/profile/' + data['user'] + '/');
                 }
 
             });
