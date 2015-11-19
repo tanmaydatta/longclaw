@@ -17,7 +17,7 @@
             <tr>
                 <td>
                     {{ problem.prob_id }} </td>
-                <td><a href="/problem/{{problem.prob_id}}">
+                <td><a target="_blank" href="/problem/{{problem.prob_id}}">
                     {{ problem.name }} </a></td>
                 <td>
                     {% for tag in problem.tags %}
@@ -102,7 +102,6 @@
 <br>
 <br>
 <br>
-<script type="text/javascript" src="/static/tablesort.min.js"></script>
 <script type="text/javascript">
     $('table').tablesort();
 </script>
