@@ -41,19 +41,11 @@
                     <!-- Knuth-JIIT -->
                 </a>
                 <div ng-controller="signout" class="ui right floated buttons">
-                    <a class="ui animated fade button" tabindex="0" href="">
-                        <div class="visible content"><i class="android large green icon"></i> Download App</div>
-                        <div class="hidden content">
-                            <!-- Android icon by Icons8 -->
-                            <!-- Android OS icon by Icons8 -->
-                            <!-- Android OS icon by Icons8 -->
-<img class="icon icons8-Android-OS" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAB00lEQVRIS+2VTVLbQBCF37Oyx5yA7FNW2YW8xjkB5gTACdCcADiBhhMAJwBOgFhbKavkZB9OgA8QuVM98aRMCjQiprxCG8mumf7653U3saGHG+IgCOpP0245sPMmh9qcCYJ6hbkC5HaW2NuXYL0iHQMcz5LsqMmZIEi9rWvmBC4FMiLQV4MClARzAY6jSEahqFuCcElw7ACCB32T2PsDdNEehGodBGnqCBwKcEfKtNq152o0nqRnQvYJ7AtwvVbqvkzTflRzqhBArgjedCLZVtCi5pNADgAeKayOZPBjYMvXImuMSL0GeeqNrKrLf3tnIHJeDe3Zm0BxYUQv+tSE8r8Uxx1FSnVsIfL1+9Dmq/dejOgvCBy5oou4urz6kKcqEkLytUBVkjWnuDDyAXJl+LdGH6lrLW8v497E5CrvtqmbDbPRmxrWH46/pSmE2ap0nxnSpva9RjHVrrX/BdJLvcKUEMx9M+oAddMbOHTTYwkKRR2e3hPjRslq1+vvDnn/7iBCtkDqHjrRAasgneoALgTQZditkuzzWhs2Lozm/WRp5NEbjAvzE8DO8v+LKsnStUCugVUUC3Q7n2D9ytY1sfiFFB3Mm0Tg4cEatVkRbc5sDPQb2d9jKoqPSPkAAAAASUVORK5CYII=" width="40" height="28">
-
-
+                    <a class="ui animated fade grey button" tabindex="0" href="">
+                        <div class="visible content"><i class="android  green icon"></i> Download App</div>
+                        <div class="hidden fluid content">
+                            <img class="icon fluid icons8-Android-OS" src="/static/images/android.png" width="120" height="70" style="padding-bottom:3em">
                         </div>
-                    </a>
-                    <a class="ui circular labeled icon  button" tabindex="0" href="">
-                        <i class="android large green icon"></i> Download App
                     </a>
                     {% if login_user %}
                     <a href="/profile/{{login_user}}" class="ui blue animated icon button" tabindex="0">
@@ -91,9 +83,11 @@
                     <a id="home" class="item" href="/">
                         <i class="home icon"></i> Home
                     </a>
+                    {% if login_user %}
                     <a id="profile" class="item" href="/profile/{{login_user}}">
                         <i class="user icon"></i> Profile
                     </a>
+                    {% endif %}
                     <a id="ratings" class="item" href="/ratings">
                         <i class="student icon"></i> Ratings
                     </a>
