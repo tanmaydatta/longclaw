@@ -1,0 +1,171 @@
+{% extends "parent.html" %} {% block child %}
+<div class="ui top attached active tab segment" ng-app="myApp">
+    <div class="ui grid container">
+        <div class="eleven wide column">
+            <!-- <div ng-controller="MyController" class="col-xs-12 my-controller"> -->
+            <!-- <div class="ui right aligned container">
+                    <label for="search">Search:</label>
+                    <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+                    <label for="search">items per page:</label>
+                    <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+                </div> -->
+            <table class="ui sortable selectable padded celled teal table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Codechef<br>Rating</th>
+                        <th>Codeforces<br>Rating</th>
+                        <th>Spoj<br>Rating</th>
+                        <th>Overall<br>Rating</th>
+                    </tr>
+                </thead>
+                <tbody class="students">
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.rank }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.cc_rating }}</td>
+                        <td>{{ student.cf_rating }}</td>
+                        <td>{{ student.spoj_rating }}</td>
+                        <td>{{ student.ov_rating }}</td>
+                    </tr>
+                    {% endfor %}
+                    <!-- {% for student in students %} -->
+                    <!-- <tr dir-paginate="student in students | filter:q | itemsPerPage: pageSize" current-page="currentPage" pagination-id="mealsPagination">
+                            <td>{{ student.rank }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.contests }}</td>
+                            <td>{{ student.rating }}</td>
+                        </tr> -->
+                    <!-- {% endfor %} -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="6">
+                            <div class="ui  pagination menu">
+                                <a class="icon item" href="">
+                                    <i class="left chevron icon"></i>
+                                </a>
+                                {% for i in range(0,5) %}
+                                <a href="/ratings/page/{{i+1}}" class="item">{{i+1}}</a> {% endfor %}
+                                <!-- <a class="item">2</a> -->
+                                <!-- <a class="item">3</a> -->
+                                <!-- <a class="item">4</a> -->
+                                <a class="icon item" href="">
+                                    <i class="right chevron icon"></i>
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- <div ng-controller="OtherController" >
+                    <small>this is in "OtherController"</small>
+                    <div class="ui center aligned container">
+                        <dir-pagination-controls boundary-links="true" pagination-id="mealsPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="/static/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div> -->
+        <!-- <ul>
+                  <li dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage" pagination-id="mealsPagination">{{ meal }}</li>
+                </ul> -->
+        <!-- </div> -->
+        <!--till pagination menu-->
+        <!-- <table class="ui sortable selectable padded celled table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th># Contests</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody class="students">
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.rank }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.contests }}</td>
+                        <td>{{ student.rating }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">
+                            <div class="ui pagination menu small" style="padding-left:0;">
+                                <li class="icon item" style="cursor:pointer;"><a><i class="left arrow icon "></i></a></li>
+                                <li class="item " style="cursor:pointer;"><a>1</a></li>
+                                <li class="item " style="cursor:pointer;"><a>2</a></li>
+                                <li class="item active" style="cursor:pointer;"><a>3</a></li>
+                                <li class="item " style="cursor:pointer;"><a>4</a></li>
+                                <li class="item " style="cursor:pointer;"><a>5</a></li>
+                                <li class="item " style="cursor:pointer;"><a>...</a></li>
+                                <li class="item " style="cursor:pointer;"><a>10</a></li>
+                                <li class="icon item" style="cursor:pointer;"><a><i class="right arrow icon "></i></a></li>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table> -->
+        <!-- </div> -->
+        <div class="five wide container" style="padding-top:1em">
+            <!-- <div ng-controller="MyController2" class="col-xs-12 my-controller"> -->
+            <!-- <div class="ui right aligned container">
+                    <label for="search">Search:</label>
+                    <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+                    <label for="search">items per page:</label>
+                    <input type="number" min="1" max="100" class="form-control" ng-model="pageSize">
+                </div> -->
+            <table class="ui sortable selectable padded celled teal table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Upvotes</th>
+                    </tr>
+                </thead>
+                <tbody class="contributors">
+                    {% for contributor in contributors %}
+                    <!--   <tr dir-paginate="contributor in contributors | filter:q | itemsPerPage: pageSize" current-page="currentPage" pagination-id="mealsPagination"> -->
+                    <tr>
+                        <td>{{ contributor.rank }}</td>
+                        <td>{{ contributor.name }}</td>
+                        <td>{{ contributor.upvotes }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">
+                            <div class="ui  pagination menu">
+                                <a class="icon item" href="">
+                                    <i class="left chevron icon"></i>
+                                </a>
+                                {% for i in range(0,5) %}
+                                <a href="/ratings/page/{{i+1}}" class="item">{{i+1}}</a> {% endfor %}
+                                <!-- <a class="item">2</a> -->
+                                <!-- <a class="item">3</a> -->
+                                <!-- <a class="item">4</a> -->
+                                <a class="icon item" href="">
+                                    <i class="right chevron icon"></i>
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+            <!-- <div ng-controller="OtherController2" < >
+                <small>this is in "OtherController2"</small>
+                <div class="ui center aligned container">
+                    <dir-pagination-controls boundary-links="true" pagination-id="mealsPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="/static/dirPagination.tpl.html"></dir-pagination-controls>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- </div> -->
+<!-- </div> -->
+<script src="/static/ratings.js"></script>
+{% endblock %}

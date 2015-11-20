@@ -1,4 +1,3 @@
-
 $('.menu .item')
     .tab();
 $('.ui.dropdown')
