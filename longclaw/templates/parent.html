@@ -12,14 +12,11 @@
     <script type="text/javascript" src="/static/jquery.min.js"></script>
     <script type="text/javascript" src="/static/markdown.min.js"></script>
     <script src="/static/semantic/dist/semantic.min.js"></script>
-    <script type="text/javascript" src="/static/dirPagination.js"></script>
-    <script type="text/javascript" src="/static/parent.js"></script>
     <script type="text/javascript" src="/static/tablesort.min.js"></script>
-    <script type="text/javascript" src="/static/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/table.css">
     <!-- <a href="https://icons8.com">Icon pack by Icons8</a> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.10.3/semantic.min.css"> -->
-    <!-- // <script src="/static/mithril.js"></script> -->
-    <!-- // <script src="/static/Pagination.js"></script>/ -->
     {% block head %}{% endblock %}
 </head>
 <script type="text/javascript">
@@ -115,11 +112,6 @@
     </div>
     {% block end %}{% endblock %}
 </body>
-<script type="text/javascript">
-$('#clear_menu')
-    .sticky({
-        context: '#stick_it'
-    });
-</script>
+<script type="text/javascript" src="/static/parent.js"></script>
 
 </html>

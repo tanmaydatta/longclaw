@@ -510,15 +510,6 @@ def discuss():
         user = ''
     return render_template('discuss.html', login_user=user), 200
 
-@app.route('/facebook/', methods=['GET'])
-def facebook():
-    try:
-        user = get_user_from_auth(request.cookies['auth_key'])
-        # return redirect('/')
-    except:
-        user = ''
-    return render_template('facebook.html', login_user=user), 200
-
 
 @app.route('/problem/<id>/', methods=['GET'])
 def problems(id):

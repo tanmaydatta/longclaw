@@ -1,3 +1,7 @@
+$('#clear_menu')
+    .sticky({
+        context: '#stick_it'
+    });
 $('.menu .item')
     .tab();
 $('.ui.dropdown')
