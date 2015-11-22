@@ -28,7 +28,12 @@
         <div class="ui  top left attached label">Content
           <i class="big edit icon"></i>
         </div>
-        <textarea rows="12" ng-model="content" ng-change="toHTML()" ></textarea>
+        <textarea rows="12" ng-model="content" ng-change="toHTML()" >Markdown content:&#13;&#10;# H1&#13;&#10;
+## H2&#13;&#10;<http://www.example.com>&#13;&#10;~~Mistaken text.~~&#13;&#10;```python
+s = "Python syntax highlighting"
+print s
+```
+ </textarea>
       </div>
       <div class="ui raised segment" id="m2html">
         
@@ -48,6 +53,7 @@
     </button>
   </div>
 </div>
+<br><br>
 <script type="text/javascript">
 $('#new_blog_tab').addClass('active');
 </script>
