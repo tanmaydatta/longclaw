@@ -33,17 +33,23 @@
     <div>
         <div id="stick_it" class="ui container  clearing segment" style="background:white; width:1200px">
             <div class="ui" style="width: 100% !important; height: 43px !important; left: 312px;">
-                <a href="/" class="right rounded spaced image">
+                <!-- <div href="/" class="right rounded spaced image"> -->
                     <img src="/static/images/logo.png" height="50" width="200">
                     <!-- Knuth-JIIT -->
-                </a>
+                <!-- </div> -->
                 <div ng-controller="signout" class="ui right floated buttons">
-                    <a class="ui animated fade grey button" tabindex="0" href="">
-                        <div class="visible content"><i class="android  green icon"></i> Download App</div>
-                        <div class="hidden fluid content">
-                            <img class="icon fluid icons8-Android-OS" src="/static/images/android.png" width="120" height="70" style="padding-bottom:3em">
+                    <a class="ui animated fade grey compact icon button" tabindex="0" href="" target="_blank">
+                        <div class="visible content"><i class="android large green icon"></i><font >Download App</font></div>
+                        <div class="hidden fluid content"  >
+                            <img src="/static/images/android.png" height="80px" width="120px" style="padding-bottom:4em;padding-top:-3em;">   
                         </div>
                     </a>
+                    <!-- <a class="ui animated fade grey compact labeled icon button" tabindex="0" href="">
+                        <div class="visible content"  ><i class="android large green icon"></i>Download App</div>
+                        <div class="hidden fluid content">
+                            <img  src="/static/images/android.png"  height="70" style="padding-bottom:3em">
+                        </div> 
+                    </a> -->
                     {% if login_user %}
                     <a href="/profile/{{login_user}}" class="ui blue animated icon button" tabindex="0">
                         <div class="visible content">{{login_user}}</div>
