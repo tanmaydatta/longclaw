@@ -76,8 +76,13 @@ def dbSetup():
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
-
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('home.html', login_user=user), 200
+    #return 'Hello World!'
 
 # error 404 not found
 @app.errorhandler(404)
@@ -518,6 +523,8 @@ def facebook():
     except:
         user = ''
     return render_template('facebook.html', login_user=user), 200
+
+
 
 
 @app.route('/problem/<id>/', methods=['GET'])
