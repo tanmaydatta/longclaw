@@ -1,3 +1,9 @@
+// $('#date').dateSelector();
+
+$("#datepicker").datepicker();
+$("#datepicker").datepicker("option", "showAnim", "clip");
+
+
 var signupapp = angular.module("sign_up", ["ngCookies"]);
 signupapp.controller("formctrl", ['$scope', '$http', '$element', '$cookies',
     function($scope, $http, $element, $cookies) {
