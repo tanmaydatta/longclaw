@@ -15,7 +15,7 @@
   <div class="ui active tab segment" id="profile">  <!--  profile tab -->
   <div class="ui" style="width: 100% !important; height: 43px !important; left: 312px;">
     <div id="sec_menu" class="ui pointing  tabular large secondary  menu" >
-      <a class="item" href="/profile/{{username}}" id="overview_tab">
+      <a id="overview_tab" class="item" href="/profile/{{username}}" id="overview_tab">
         Overview
       </a>
       <a id="new_blog_tab" class="item" href="/blog/new/{{username}}">
@@ -33,6 +33,9 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+$('#overview_tab').addClass('active');
+</script>
 {% block body %}{% endblock %}
 {% endblock %}
 <!-- =================================== -->

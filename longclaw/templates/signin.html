@@ -10,14 +10,14 @@
     <script src="/static/semantic/dist/semantic.min.js"></script>
     <!-- // <script src='/static/captcha.js'></script> -->
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $("#forgot").click(function() {
-            $('#modaldiv').modal('show');
-
-        });
-    });
-    </script>
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/static/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/static/favicons/favicon-16x16.png" sizes="128x128">
+    <link rel="manifest" href="/static/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body ng-app="sign_in">
@@ -56,7 +56,10 @@
                     Sign In
                 </button>
             </div>
+            <br>
+            <br>
             <div class="ui center aligned grid container">
+                <!-- <br><br> -->
                 <button class="ui button" id="forgot">
                     Forgot Password
                 </button>
@@ -88,14 +91,13 @@
     <div id="modaldiv" class="ui modal">
         <div class="ui inverted segment">
             <!-- <div class="ui right floated icon"> -->
-                <i class="close icon"></i>
+            <i class="close icon"></i>
             <!-- </div> -->
             <!-- <div class="ui inverted segment"> -->
-            
         </div>
         <div class="header">
-                Forgot Password
-            </div>
+            Forgot Password
+        </div>
         <!-- <i class="close icon"></i>
 
         </div> -->
@@ -103,7 +105,7 @@
             <div class="ui teal label">
                 Enter username:
             </div>
-            <input type="text" placeholder="Username">
+            <input type="text" placeholder="Username" name="forgot" ng-model="forgot">
         </div>
         <div class="actions">
             <div class="ui green button" onclick="redirect()">Submit</div>

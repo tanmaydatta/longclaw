@@ -12,11 +12,11 @@ from facebook import GraphAPI, GraphAPIError
 from auth import *
 from cors import *
 import math
-from flask.ext.mail import Message
-from mail_config import *
-from longclaw import mail
+#from flask.ext.mail import Message
+#from mail_config import *
+#from longclaw import mail
 import os
-from markdown2 import markdown
+#from markdown2 import markdown
 
 
 @app.route('/xyz/')
@@ -76,8 +76,13 @@ def dbSetup():
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
-
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('home.html', login_user=user), 200
+    #return 'Hello World!'
 
 # error 404 not found
 @app.errorhandler(404)
@@ -491,6 +496,15 @@ def about():
         user = ''
     return render_template('about_us.html', login_user=user), 200
 
+@app.route('/ratings/', methods=['GET'])
+def ratings():
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('ratings.html', login_user=user), 200
+
 
 @app.route('/discuss/', methods=['GET'])
 def discuss():
@@ -500,6 +514,17 @@ def discuss():
     except:
         user = ''
     return render_template('discuss.html', login_user=user), 200
+
+@app.route('/facebook/', methods=['GET'])
+def facebook():
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('facebook.html', login_user=user), 200
+
+
 
 
 @app.route('/problem/<id>/', methods=['GET'])

@@ -1,1 +1,1 @@
-$('#ratings').addClass("active item");
+$('#profile').addClass("active item");

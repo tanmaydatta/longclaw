@@ -49,6 +49,8 @@ signinapp.controller("formctrl", ['$scope', '$http', '$element', '$cookies',
 
                     // if not successful, bind errors to error variables
                     $('#form').addClass('error');
+                    $('#form').removeClass('loading');
+
                     $('.ui.error.message').html('<ul class="list"><li>' + data['msg'] + '</li></ul>');
                     grecaptcha.reset();
                 } else {
@@ -118,6 +120,8 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
                             if (data['status'] != 'success') {
                                 // if not successful, bind errors to error variables
                                 $('#form').addClass('error');
+                                $('#form').removeClass('loading');
+
                                 $('.ui.error.message').html('<ul class="list"><li>' + data['msg'] + '</li></ul>');
                             } else {
                                 $cookies.put('auth_key', data['auth_key'], {
@@ -157,3 +161,9 @@ $('#form').form({
         }]
     }
 });
+    $(document).ready(function() {
+        $("#forgot").click(function() {
+            $('#modaldiv').modal('show');
+
+        });
+    });

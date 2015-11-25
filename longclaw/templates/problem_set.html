@@ -17,80 +17,29 @@
             <tr>
                 <td>
                     {{ problem.prob_id }} </td>
-                <td><a href="/problem/{{problem.prob_id}}">
+                <td><a target="_blank" href="/problem/{{problem.prob_id}}">
                     {{ problem.name }} </a></td>
                 <td>
-                    {% for tag in problem.tags %}
-                    {{tag}}&nbsp;
-                    {% endfor %}
+                    {% for tag in problem.tags %} {{tag}}&nbsp; {% endfor %}
                 </td>
                 <td>
                     {{ problem.level }} </td>
             </tr>
             {% endfor %}
-      <!--       <tr>
-                <td>id</td>
-                <td><a href="/problems/" id="">name</a></td>
-                <td>tag,tag,tag</td>
-                <td>level</td>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td><a href="/problems/" id="">name</a></td>
-                <td>tag,tag,tag</td>
-                <td>level</td>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td><a href="/problems/" id="">name</a></td>
-                <td>tag,tag,tag</td>
-                <td>level</td>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td><a href="/problems/" id="">name</a></td>
-                <td>tag,tag,tag</td>
-                <td>level</td>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td><a href="/problems/" id="">name</a></td>
-                <td>tag,tag,tag</td>
-                <td>level</td>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td><a href="/problems/" id="">name</a></td>
-                <td>tag,tag,tag</td>
-                <td>level</td>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td><a href="/problems/" id="">name</a></td>
-                <td>tag,tag,tag</td>
-                <td>level</td>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td><a href="/problems/" id="">name</a></td>
-                <td>tag,tag,tag</td>
-                <td>level</td>
-            </tr> -->
         </tbody>
         <tfoot>
             <tr>
                 <th colspan="4">
                     <div class="ui  pagination menu">
-                        <a class="icon item">
+                        <a class="icon item" href="">
                             <i class="left chevron icon"></i>
                         </a>
                         {% for i in range(0,count) %}
-                        <a href="/problemset/page/{{i+1}}" class="item">{{i+1}}</a>
-                        {% endfor %}
+                        <a href="/problemset/page/{{i+1}}" class="item">{{i+1}}</a> {% endfor %}
                         <!-- <a class="item">2</a> -->
                         <!-- <a class="item">3</a> -->
                         <!-- <a class="item">4</a> -->
-                        <a class="icon item">
+                        <a class="icon item" href="">
                             <i class="right chevron icon"></i>
                         </a>
                     </div>
@@ -102,8 +51,6 @@
 <br>
 <br>
 <br>
-<script type="text/javascript" src="/static/tablesort.min.js"></script>
-<script type="text/javascript">
-    $('table').tablesort();
+<script type="text/javascript" src="/static/problems.js">
 </script>
 {% endblock %}
