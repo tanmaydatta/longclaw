@@ -86,7 +86,7 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
             // for FB.getLoginStatus().
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
-                alert('h');
+                // alert('h');  
                 this.signwithfb(response);
             } else {
                 this.fb_login();
