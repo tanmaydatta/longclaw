@@ -1,18 +1,6 @@
 {% extends "base_profile.html" %}
 {% block head %}
-  <script type="text/javascript">
   
-  knuth.controller("markdown", ['$scope',
-      function($scope) {
-          $scope.toHTML = function() {
-              $('#m2html').text('');
-              $('#m2html').append(markdown.toHTML($scope.content));
-          }
-          // $scope.content="hello";
-          // $scope.content = $scope.content + 'vvv';
-      }
-  ]);
-  </script>
 {% endblock %}
 {% block body %}
   <div id="blog" class="ui top attached active tab segment">

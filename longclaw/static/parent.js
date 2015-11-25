@@ -48,3 +48,17 @@ knuth.controller("signout", ['$scope', '$cookies',
             // $scope.content = $scope.content + 'vvv';
     }
 ]);
+
+// <script type="text/javascript">
+  
+  knuth.controller("markdown", ['$scope',
+      function($scope) {
+          $scope.toHTML = function() {
+              $('#m2html').text('');
+              $('#m2html').append(markdown.toHTML($scope.content));
+          }
+          // $scope.content="hello";
+          // $scope.content = $scope.content + 'vvv';
+      }
+  ]);
+  // </script>

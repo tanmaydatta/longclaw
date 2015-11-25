@@ -1,15 +1,5 @@
 {% extends "parent.html" %}
-{% block head %}
-  <style type="text/css">
-  li {
-  margin:20px;
-  }
-  ul {
-  list-style-type: none;
-  padding: 0;
-  }
-  </style>
-{% endblock %}
+
 {% block base_head %} {% endblock %}
 {% block child %}
   <div class="ui active tab segment" id="profile">  <!--  profile tab -->
@@ -37,6 +27,17 @@
 $('#overview_tab').addClass('active');
 </script>
 {% block body %}{% endblock %}
+{% block head %}
+  <style type="text/css">
+  li {
+  margin:20px;
+  }
+  ul {
+  list-style-type: none;
+  padding: 0;
+  }
+  </style>
+{% endblock %}
 {% endblock %}
 <!-- =================================== -->
 <!-- profile overview section -->
