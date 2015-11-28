@@ -524,6 +524,28 @@ def facebook():
         user = ''
     return render_template('facebook.html', login_user=user), 200
 
+@app.route('/facebook/album/', methods=['GET'])
+def album():
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('album.html', login_user=user), 200
+
+# @app.route('/facebook/album/<page>/', methods=['GET'])
+# def album(page):
+#     try:
+#         user = get_user_from_auth(request.cookies['auth_key'])
+#         # return redirect('/')
+#     except:
+#         user = ''
+   
+#     except Exception as e:
+#         print e
+#         return response_msg('error', 'Could not connect to db')
+#     # #import ipdb; ipdb.set_trace()
+#     return render_template('album.html', problems=cursor.items, count=count, login_user=user), 200
 
 
 

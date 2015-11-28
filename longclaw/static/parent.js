@@ -26,14 +26,17 @@ $('#context2 .menu .item')
         context: 'parent'
     });
 
-$(document).ready(function() { /*code here*/
-    var elements = $('#main_menu').children();
-    elements.each(function(index, element) {
-        $(this).css({
-            "width": (100 / elements.length) + "%",
-        });
-    });
-});
+// $(document).ready(function() { /*code here*/
+//     var elements = $('#main_menu').children();
+//     elements.each(function(index, element) {
+//         $(this).css({
+//             "width": (100 / elements.length) + "%",
+//         });
+//     });
+// });
+
+
+// var app_id = "{{app_id}}";
 
 var knuth = angular.module("knuth", ['ngCookies']);
 knuth.controller("signout", ['$scope', '$cookies',

@@ -2,7 +2,7 @@
 <div class="ui top attached active tab segment" style="font-family:'Arial'">
     <div class="ui grid container">
         <div class="<!-- twelve --> sixteen wide column">
-            <table id="table" class="ui sortable selectable padded celled teal table">
+            <table id="table" class="ui sortable selectable padded celled teal table" ng-controller="ratingsCtrl">
                 <thead>
                     <tr>
                         <th>Rank</th>
@@ -17,7 +17,7 @@
                             <br>Rating</th>
                     </tr>
                 </thead>
-                <tbody class="students">
+                <tbody ng-repeat="student in students">
  <!-- {#                     { % for i in range(0,99) % } #}  -->
                      <!-- {% for student in students %}  -->
                     <tr>

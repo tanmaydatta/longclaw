@@ -50,3 +50,8 @@ $(function() {
     });
 
 });
+// $('.primary.button')
+//   .api({    
+//     url: '/facebook/'
+//   })
+// ;
