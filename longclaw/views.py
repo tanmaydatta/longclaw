@@ -553,14 +553,14 @@ def facebook():
         user = ''
     return render_template('facebook.html', login_user=user), 200
 
-@app.route('/facebook/album/', methods=['GET'])
-def album():
+@app.route('/facebook/album/<id>/', methods=['GET'])
+def album(id):
     try:
         user = get_user_from_auth(request.cookies['auth_key'])
         # return redirect('/')
     except:
         user = ''
-    return render_template('album.html', login_user=user), 200
+    return render_template('album.html', login_user=user, album_id=id), 200
 
 # @app.route('/facebook/album/<page>/', methods=['GET'])
 # def album(page):
