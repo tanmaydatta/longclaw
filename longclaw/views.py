@@ -279,13 +279,18 @@ def signup():
             srating = 0
             cfrating = 0
 
+        colg_rating = 20 * ((cfrating/100)**2)
+        colg_rating = colg_rating + 2000 + 7 * (((lrating/1000)**2) + (lrating/20))
+        colg_rating = colg_rating + 2000 + 5 * (((srating/100)**2) + (srating/20))
+
         try:
             cursor = rdb.db(TODO_DB).table('user').filter(
                 rdb.row['username'] == username
                 ).update({
                 'lrating': lrating,
                 'srating': srating,
-                'cfrating': cfrating
+                'cfrating': cfrating,
+                'colg_rating': colg_rating/3
                 }).run(connection)
         except:
             pass
@@ -975,14 +980,22 @@ def sync_ratings():
     for user in cursor.items:
         ratings = rating(user['cfhandle'], user['cchandle'])
         ratings = json.loads(ratings[0])
-        print ratings
+        colg_rating = 0
+        try:
+            colg_rating = colg_rating + 20 * ((ratings['cf_rating']/100)**2)
+            colg_rating = colg_rating + 2000 + 7 * (((ratings['lrating']/1000)**2) + (ratings['lrating']/20))
+            colg_rating = colg_rating + 2000 + 5 * (((ratings['srating']/100)**2) + (ratings['srating']/20))
+        except:
+            pass
+        print colg_rating
         try:
             cursor = rdb.db(TODO_DB).table('user').filter(
                 rdb.row['username'] == user['username']
                 ).update({
                 'lrating': ratings['lrating'],
                 'srating': ratings['srating'],
-                'cfrating': ratings['cf_rating']
+                'cfrating': ratings['cf_rating'],
+                'colg_rating': colg_rating/3,
                 }).run(connection)
             print user['username']
         except:
