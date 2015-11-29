@@ -26,7 +26,7 @@
 </head>
 <style type="text/css">
 #home:hover i {
-    color: yellow;
+    color: teal;
 }
 
 #profile:hover i {
@@ -34,7 +34,7 @@
 }
 
 #ratings:hover i {
-    color: firebrick;
+    color: #9C27B0;
 }
 
 #events:hover i {
@@ -42,7 +42,7 @@
 }
 
 #problems:hover i {
-    color: maroon;
+    color: yellow;
 }
 
 #facebook:hover i {
@@ -50,11 +50,11 @@
 }
 
 #discuss:hover i {
-    color: orangered;
+    color: #FBC02D;
 }
 
 #about_us:hover i {
-    color: lime;
+    color: #CDDC39;
 }
 </style>
 
@@ -68,12 +68,13 @@
                 <!-- Knuth-JIIT -->
                 <!-- </div> -->
                 <div ng-controller="signout" class="ui right floated buttons">
-                    <a class="ui animated fade grey compact icon button" tabindex="0" href="" target="_blank">
+                    <a class="ui animated fade grey compact basic icon button" tabindex="0" href="" target="_blank" >
                         <div class="visible content"><i class="android large green icon"></i>
                             <font>Download App</font>
                         </div>
                         <div class="hidden fluid content">
-                            <img src="/static/images/android.png" height="80px" width="120px" style="padding-bottom:4em;padding-top:-3em;">
+                            <i class="android large green icon"></i>
+                            <!-- <img src="/static/images/android.png" height="80px" width="120px" style="padding-bottom:4em;padding-top:-3em;"> -->
                         </div>
                     </a>
                     <!-- <a class="ui animated fade grey compact labeled icon button" tabindex="0" href="">
@@ -122,7 +123,7 @@
                         <!-- <div id="clear_menu" class="ui sticky large icon menu"> -->
                         <div class="ui  grid container" id="main_menu">
                             <a id="home1" class="item" href="/">
-                                <i  class="home icon"></i> Home
+                                <i class="home icon"></i> Home
                             </a>
                             {% if login_user %}
                             <a id="profile1" class="item" href="/profile/{{login_user}}">
@@ -132,7 +133,7 @@
                             <a id="ratings1" class="item" href="/ratings/1">
                                 <i class="student icon"></i> Ratings
                             </a>
-              <!--               <a id="events1" class="item" href="/events">
+                            <!--               <a id="events1" class="item" href="/events">
                                 <i class="calendar icon"></i> Events
                             </a> -->
                             <a id="discuss1" class="item" href="/discuss">
@@ -154,7 +155,7 @@
                     <div class="computer only row">
                         <div class="ui grid container" id="main_menu">
                             <a id="home" class="item" href="/">
-                                <i  class="home icon"></i> Home
+                                <i class="home icon"></i> Home
                             </a>
                             {% if login_user %}
                             <a id="profile" class="item" href="/profile/{{login_user}}">
@@ -164,7 +165,7 @@
                             <a id="ratings" class="item" href="/ratings/1">
                                 <i class="student icon"></i> Ratings
                             </a>
-         <!--                    <a id="events" class="item" href="/events">
+                            <!--                    <a id="events" class="item" href="/events">
                                 <i class="calendar icon"></i> Events
                             </a> -->
                             <a id="discuss" class="item" href="/discuss">
@@ -190,7 +191,8 @@
         {% block end %}{% endblock %}
 </body>
 <script type="text/javascript" src="/static/parent.js"></script>
-<script type="text/javascript" src="/static/facebook.js"></script>
 <script type="text/javascript" src="/static/settings.js"></script>
+<script type="text/javascript" src="/static/facebook.js"></script>
 
 </html>
+    
