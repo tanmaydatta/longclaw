@@ -267,6 +267,27 @@ def signup():
         except:
             return response_msg('error', 'error inserting in db')
 
+        # import ipdb;ipdb.set_trace()
+        ratings = requests.get("http://knuth-jiit.me/rating/" + username).json()
+        try:
+            lrating = ratings['lrating']
+            cfrating = ratings['cf_rating']
+            srating = ratings['srating']
+        except:
+            lrating = 0
+            srating = 0
+            cfrating = 0
+
+        try:
+            cursor = rdb.db(TODO_DB).table('user').filter(
+                rdb.row['username'] == username
+                ).update({
+                'lrating': lrating,
+                'srating': srating,
+                'cfrating': cfrating
+                }).run(connection)
+        except:
+            pass
         # return response_msg('success', 'OK')
         return response_msg('success', 'OK', auth_key=gen_auth_key(username), user=username)
 
