@@ -268,7 +268,7 @@ def signup():
             return response_msg('error', 'error inserting in db')
 
         #import ipdb;ipdb.set_trace()
-        ratings = rating(cfuser, ccuser)
+        ratings = rating(cfuser, ccuser,0)
         ratings = json.loads(ratings[0])
         try:
             lrating = ratings['lrating']
@@ -931,13 +931,17 @@ def get_rating(username):
             return response_msg('error', 'user doesnt exist')
         cf_username = cursor.items[0]['cfhandle']
         cc_username = cursor.items[0]['cchandle']
+        try:
+            colg_rating = cursor.items[0]['colg_rating']
+        except:
+            colg_rating = 0
     except:
         return response_msg('error', 'Could not connect to db')
     
-    return rating(cf_username, cc_username)
+    return rating(cf_username, cc_username, colg_rating)
 
 
-def rating(cf_username, cc_username):
+def rating(cf_username, cc_username, colg_rating):
     # import ipdb;ipdb.set_trace()
     
     try:
@@ -966,9 +970,10 @@ def rating(cf_username, cc_username):
         except:
             cf_rating = 0
 
-        return response_msg('success', 'OK',cf_rating=cf_rating, lrating=int(lrating), srating=int(srating))
+        return response_msg('success', 'OK',colg_rating=colg_rating,cf_rating=cf_rating, lrating=int(lrating), srating=int(srating))
     except:
         return response_msg("error", 'unable to fetch') 
+
 
 @app.route('/sync_ratings/')
 def sync_ratings():
@@ -978,7 +983,7 @@ def sync_ratings():
     except:
         return response_msg('error', 'could not connect to db')
     for user in cursor.items:
-        ratings = rating(user['cfhandle'], user['cchandle'])
+        ratings = rating(user['cfhandle'], user['cchandle'], user['colg_rating'])
         ratings = json.loads(ratings[0])
         colg_rating = 0
         try:
