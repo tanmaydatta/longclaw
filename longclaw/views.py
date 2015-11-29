@@ -12,6 +12,8 @@ from facebook import GraphAPI, GraphAPIError
 from auth import *
 from cors import *
 import math
+from bs4 import BeautifulSoup
+import re
 #from flask.ext.mail import Message
 #from mail_config import *
 #from longclaw import mail
@@ -889,3 +891,50 @@ def forgot():
 
     else:
         return response_msg('error', 'only POST')
+
+
+@app.route('/rating/<username>/', methods=['GET'])
+def rating(username):
+    # import ipdb;ipdb.set_trace()
+    try:
+        connection = get_rdb_conn()
+        cursor = rdb.db(TODO_DB).table('user').filter(
+            rdb.row['username'] == username
+            ).run(connection)
+        if len(cursor.items) == 0:
+            return response_msg('error', 'user doesnt exist')
+        cf_username = cursor.items[0]['cfhandle']
+        cc_username = cursor.items[0]['cchandle']
+    except:
+        return response_msg('error', 'Could not connect to db')
+
+    try:
+        page = requests.get("https://www.codechef.com/users/" + cc_username)
+        soup = BeautifulSoup(page.text, "html.parser")
+        table = soup.find_all('table', {'class':'rating-table'})[0]
+        trs = table.find_all('tr')
+        
+        td = trs[1].find_all('td')[2].text
+        lrating = re.findall(r'\d+', td)
+        if len(lrating) > 0:
+            lrating = lrating[0]
+        else:
+            lrating = 0 
+        td = trs[2].find_all('td')[2].text
+        srating = re.findall(r'\d+', td)
+        if len(srating) > 0:
+            srating = srating[0]
+        else:
+            srating = 0
+        
+        # cf rating
+        resp = requests.get("http://codeforces.com/api/user.info?handles=" + cf_username).json()
+        try:
+            cf_rating = resp['result'][0]['rating']
+        except:
+            cf_rating = 0
+
+        return response_msg('success', 'OK',cf_rating=cf_rating, lrating=int(lrating), srating=int(srating))
+    except:
+        return response_msg("error", 'unable to fetch') 
+
