@@ -916,11 +916,6 @@ def forgot():
 
 @app.route('/rating/<username>/', methods=['GET'])
 def get_rating(username):
-    return rating(username)
-
-
-def rating(username):
-    # import ipdb;ipdb.set_trace()
     try:
         connection = get_rdb_conn()
         cursor = rdb.db(TODO_DB).table('user').filter(
@@ -932,7 +927,13 @@ def rating(username):
         cc_username = cursor.items[0]['cchandle']
     except:
         return response_msg('error', 'Could not connect to db')
+    
+    return rating(username)
 
+
+def rating(username):
+    # import ipdb;ipdb.set_trace()
+    
     try:
         page = requests.get("https://www.codechef.com/users/" + cc_username)
         soup = BeautifulSoup(page.text, "html.parser")
