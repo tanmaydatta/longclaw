@@ -13,3 +13,9 @@ console.log(TextInside);
 TextInside.bold();
 // alert("af");
 // document.getElementById(table_filter).style.fontWeight = 'bold';
+
+var app = angular.module('knuth', []);
+app.controller('ratingssCtrl', function($scope, $http) {
+    $http.get("url")
+    .then(function (response) {$scope.students = response.data.array;});
+});

@@ -22,9 +22,42 @@
     <link rel="manifest" href="/static/favicons/manifest.json">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff">    
-    {% block head %}{% endblock %}
+    <meta name="theme-color" content="#ffffff"> {% block head %}{% endblock %}
 </head>
+<style type="text/css">
+#home:hover i {
+    color: yellow;
+}
+
+#profile:hover i {
+    color: purple;
+}
+
+#ratings:hover i {
+    color: firebrick;
+}
+
+#events:hover i {
+    color: DarkOrange;
+}
+
+#problems:hover i {
+    color: maroon;
+}
+
+#facebook:hover i {
+    color: #3b5998;
+}
+
+#discuss:hover i {
+    color: orangered;
+}
+
+#about_us:hover i {
+    color: lime;
+}
+</style>
+
 <body ng-app="knuth">
     <!-- this segment is containing the whole content -->
     <div>
@@ -79,45 +112,84 @@
                     <!-- <div class="or"></div> -->
                 </div>
             </div>
-            
-            <div id="clear_menu" class="ui inverted fixed sticky labeled icon large pointing menu">
-                <!-- <div id="clear_menu" class="ui sticky large icon menu"> -->
-                <div class="ui container" id="main_menu">
-                    <a id="home" class="item" href="/">
-                        <i class="home icon"></i> Home
-                    </a>
-                    {% if login_user %}
-                    <a id="profile" class="item" href="/profile/{{login_user}}">
-                        <i class="user icon"></i> Profile
-                    </a>
+            <!-- <div id="clear_menu" class="ui fluid seven item inverted fixed sticky labeled icon large pointing menu grid"> -->
+            {% if login_user %}
+            <div id="clear_menu" class="ui fluid seven item inverted fixed sticky labeled icon large pointing menu grid">
+                {% else %}
+                <div id="clear_menu" class="ui fluid six item inverted fixed sticky labeled icon large pointing menu grid">
                     {% endif %}
-                    <a id="ratings" class="item" href="/ratings/1">
-                        <i class="student icon"></i> Ratings
-                    </a>
-                    <a id="events" class="item" href="/events">
-                        <i class="calendar icon"></i> Events
-                    </a>
-                    <a id="discuss" class="item" href="/discuss">
-                        <i class="feed   icon"></i> Forum
-                        <!-- announcement -->
-                        <!-- Discuss -->
-                    </a>
-                    <a id="problems" class="item" href="/problemset">
-                        <i class="code icon"></i> Problems
-                    </a>
-                    <a id="facebook" class="item" href="/facebook">
-                        <i class="facebook blue icon"></i> Facebook
-                    </a>
-                    <a id="about_us" class="item" href="/about">
-                        <i class="<!-- smile --> info circle icon"></i> About Us
-                    </a>
+                    <div class="mobile only row">
+                        <!-- <div id="clear_menu" class="ui sticky large icon menu"> -->
+                        <div class="ui  grid container" id="main_menu">
+                            <a id="home1" class="item" href="/">
+                                <i  class="home icon"></i> Home
+                            </a>
+                            {% if login_user %}
+                            <a id="profile1" class="item" href="/profile/{{login_user}}">
+                                <i class="user icon"></i> Profile
+                            </a>
+                            {% endif %}
+                            <a id="ratings1" class="item" href="/ratings/1">
+                                <i class="student icon"></i> Ratings
+                            </a>
+              <!--               <a id="events1" class="item" href="/events">
+                                <i class="calendar icon"></i> Events
+                            </a> -->
+                            <a id="discuss1" class="item" href="/discuss">
+                                <i class="feed   icon"></i> Forum
+                                <!-- announcement -->
+                                <!-- Discuss -->
+                            </a>
+                            <a id="problems1" class="item" href="/problemset">
+                                <i class="code icon"></i> Problems
+                            </a>
+                            <a id="facebook1" class="item" href="/facebook">
+                                <i class="facebook square icon"></i> Facebook
+                            </a>
+                            <a id="about_us1" class="item" href="/about">
+                                <i class="info circle icon"></i> About Us
+                            </a>
+                        </div>
+                    </div>
+                    <div class="computer only row">
+                        <div class="ui grid container" id="main_menu">
+                            <a id="home" class="item" href="/">
+                                <i  class="home icon"></i> Home
+                            </a>
+                            {% if login_user %}
+                            <a id="profile" class="item" href="/profile/{{login_user}}">
+                                <i class="user icon"></i> Profile
+                            </a>
+                            {% endif %}
+                            <a id="ratings" class="item" href="/ratings/1">
+                                <i class="student icon"></i> Ratings
+                            </a>
+         <!--                    <a id="events" class="item" href="/events">
+                                <i class="calendar icon"></i> Events
+                            </a> -->
+                            <a id="discuss" class="item" href="/discuss">
+                                <i class="feed   icon"></i> Forum
+                                <!-- announcement -->
+                                <!-- Discuss -->
+                            </a>
+                            <a id="problems" class="item" href="/problemset">
+                                <i class="code icon"></i> Problems
+                            </a>
+                            <a id="facebook" class="item" href="/facebook">
+                                <i class="facebook square icon"></i> Facebook
+                            </a>
+                            <a id="about_us" class="item" href="/about">
+                                <i class="info circle icon"></i> About Us
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                {% block child %}{% endblock %}
             </div>
-            {% block child %}{% endblock %}
         </div>
-    </div>
-    {% block end %}{% endblock %}
+        {% block end %}{% endblock %}
 </body>
 <script type="text/javascript" src="/static/parent.js"></script>
 <script type="text/javascript" src="/static/settings.js"></script>
+
 </html>
