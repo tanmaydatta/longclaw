@@ -2,7 +2,7 @@ window.fbAsyncInit = function() {
     FB.init({
         appId: app_id,
         xfbml: true,
-        version: 'v2.4'
+        version: 'v2.5'
     });
     // checkLoginState();
 };
@@ -17,6 +17,7 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 var signinapp = angular.module("sign_in", ["ngCookies"]);
+
 signinapp.controller("formctrl", ['$scope', '$http', '$element', '$cookies',
     function($scope, $http, $element, $cookies) {
         var form_element = $($element);
@@ -139,6 +140,7 @@ signinapp.controller("signwithfb", ['$scope', '$http', '$cookies',
     }
 
 ]);
+
 $('#form').form({
     user: {
         identifier: 'user',
