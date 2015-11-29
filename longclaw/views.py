@@ -268,7 +268,7 @@ def signup():
             return response_msg('error', 'error inserting in db')
 
         # import ipdb;ipdb.set_trace()
-        ratings = requests.get("http://knuth-jiit.me/rating/" + username).json()
+        ratings = rating(username)
         try:
             lrating = ratings['lrating']
             cfrating = ratings['cf_rating']
@@ -915,6 +915,10 @@ def forgot():
 
 
 @app.route('/rating/<username>/', methods=['GET'])
+def get_rating(username):
+    return rating(username)
+
+
 def rating(username):
     # import ipdb;ipdb.set_trace()
     try:
