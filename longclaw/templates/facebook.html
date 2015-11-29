@@ -9,7 +9,7 @@
     <div class="four wide column" ng-repeat="album in albums">
             <div class="ui container">
                 <div class="ui stacked  segment">
-                    <a href="/facebook/album/" >
+                    <a href={{ album.link | angular }} >
                         <img src="{{ album.cpic | angular }}" height=200 width=225>
 
                     </a>

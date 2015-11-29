@@ -7,7 +7,7 @@ $('#facebook').addClass('active item');
  	var fb="https://graph.facebook.com/v2.5/";
 
     var gidd=333283916693071;
-    var access="CAACEdEose0cBAM1LZCajaiJiZCLjdayMZBo8yEuL1CI02MwbjZAVTV2oJxVtjVDZC5v3CzGYHHMMnzdUlV4GSXlETAovZB2c6dSYOYCrqRda0pucEnwreOba2yC6yn2t1FAsAlZCibEw0HT2nOmAbH9qHIiVYunXrQa2Rnn8wBjqkZAdm2haP77VLxUtErRIdM7J3IuRoCM4nLiUJ6KkWZClA";
+    var access="CAACEdEose0cBAC57PdSuHcgme875LdubnEdrkaq4QvHsRZBooqrZAkDxjgR1G9Uxw4LJe9BAHivNij4lxAUZCZAJY2UWEKhuADOWoq5Vj2jaySdlcF0DvYxCFYD0fZBHC7mhyn6L7jKpgZAcJ77bUAbGFDSiNiOzvcHIZAZAtxINX7UioaW0OKSwHZCZCWfXn5UNqYpPCDstKwb2u7tRFE484r";
     $scope.accesstoken=access;
     var url=fb+gidd+"/albums?access_token="+access;
    $http.get(url)
@@ -16,6 +16,7 @@ $('#facebook').addClass('active item');
    // $scope.pp=response.data.first_name;
    $scope.albums=response.data.data;
    console.log($scope.albums);
+
    // for(int i=0;i<albums.length;i++)
    // {
    // 	albums[i].num=10;
@@ -25,7 +26,7 @@ angular.forEach($scope.albums, function(value, key){
 	var url1=fb+value.id+"?fields=count,cover_photo&access_token="+access;
     $http.get(url1)
    .then(function (response) {
-
+    value.link="/facebook/album/"+value.id;
    	value.num=response.data.count;
    	var cpid=response.data.cover_photo.id;
    	// alert(cpid);
