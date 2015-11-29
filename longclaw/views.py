@@ -245,7 +245,7 @@ def signup():
             return response_msg('error', 'Username is already taken')
 
         # finally inserting in db
-        # #import ipdb; ipdb.set_trace()
+        #import ipdb; ipdb.set_trace()
         try:
             new_user = rdb.db(TODO_DB).table("user").insert({
                 "fname": fname,
@@ -267,8 +267,9 @@ def signup():
         except:
             return response_msg('error', 'error inserting in db')
 
-        # import ipdb;ipdb.set_trace()
-        ratings = rating(username)
+        #import ipdb;ipdb.set_trace()
+        ratings = rating(cfuser, ccuser)
+	ratings = json.loads(ratings[0])
         try:
             lrating = ratings['lrating']
             cfrating = ratings['cf_rating']
@@ -928,10 +929,10 @@ def get_rating(username):
     except:
         return response_msg('error', 'Could not connect to db')
     
-    return rating(username)
+    return rating(cf_username, cc_username)
 
 
-def rating(username):
+def rating(cf_username, cc_username):
     # import ipdb;ipdb.set_trace()
     
     try:
