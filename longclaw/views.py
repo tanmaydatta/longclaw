@@ -269,7 +269,7 @@ def signup():
 
         #import ipdb;ipdb.set_trace()
         ratings = rating(cfuser, ccuser)
-	ratings = json.loads(ratings[0])
+        ratings = json.loads(ratings[0])
         try:
             lrating = ratings['lrating']
             cfrating = ratings['cf_rating']
@@ -965,3 +965,27 @@ def rating(cf_username, cc_username):
     except:
         return response_msg("error", 'unable to fetch') 
 
+@app.route('/sync_ratings/')
+def sync_ratings():
+    try:
+        connection = get_rdb_conn()
+        cursor = rdb.db(TODO_DB).table('user').run(connection)
+    except:
+        return response_msg('error', 'could not connect to db')
+    for user in cursor.items:
+        ratings = rating(user['cfhandle'], user['cchandle'])
+        ratings = json.loads(ratings[0])
+        print ratings
+        try:
+            cursor = rdb.db(TODO_DB).table('user').filter(
+                rdb.row['username'] == user['username']
+                ).update({
+                'lrating': ratings['lrating'],
+                'srating': ratings['srating'],
+                'cfrating': ratings['cf_rating']
+                }).run(connection)
+            print user['username']
+        except:
+            print 'error' + user['username']
+
+    return response_msg('sucess', 'OK')
