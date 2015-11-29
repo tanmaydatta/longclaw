@@ -1,164 +1,31 @@
 {% extends "parent.html" %} {% block child %}
+
+
+<div ng-controller="fbalbum">
+
 <div class="ui top attached active tab segment">
     <!-- <div class="ui top attached active tab segment" ng-controller="fbCtrl"> -->
     <div class="ui  grid">
-        <!-- <div class="ui  grid" ng-repeat="image in imagess"> -->
-        <div class="four wide column">
+    <div class="four wide column" ng-repeat="album in albums">
             <div class="ui container">
                 <div class="ui stacked  segment">
-                    <a href="/facebook/album/"  class="ui spaced image">
-                        <!-- <img src="/static/images/android_hands.jpg" src="{{ image.content  }}"> -->
-                        <img src="/static/images/android_hands.jpg">
+                    <a href="/facebook/album/" >
+                        <img src="{{ album.cpic | angular }}" height=200 width=225>
+
                     </a>
                 </div>
                 <div class="ui center aligned container">
                     <div class="ui compact menu">
                         <a class="item" href="/facebook/album/" >
-                            <i class="large purple   icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
+                            <i class="large purple   icon grid layout"></i> {{album.name | angular}}
+                            <div class="floating ui red label">{{ album.num | angular }} pics</div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="four wide column">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href="/album1" target="_blank" class="ui spaced image">
-                        <img src="/static/images/android_hands.jpg">
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/album1" target="_blank">
-                            <i class="brown icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide column">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href="/album1" target="_blank" class="ui spaced image">
-                        <img src="/static/images/android_hands.jpg">
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/album1" target="_blank">
-                            <i class="brown icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide column">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href="/album1" target="_blank" class="ui spaced image">
-                        <img src="/static/images/android_hands.jpg">
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/album1" target="_blank">
-                            <i class="brown icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide column">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href="/album1" target="_blank" class="ui spaced image">
-                        <img src="/static/images/android_hands.jpg">
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/album1" target="_blank">
-                            <i class="brown icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide column">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href="/album1" target="_blank" class="ui spaced image">
-                        <img src="/static/images/android_hands.jpg">
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/album1" target="_blank">
-                            <i class="brown icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide column">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href="/album1" target="_blank" class="ui spaced image">
-                        <img src="/static/images/android_hands.jpg">
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/album1" target="_blank">
-                            <i class="brown icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide column">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href="/album1" target="_blank" class="ui spaced image">
-                        <img src="/static/images/android_hands.jpg">
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/album1" target="_blank">
-                            <i class="brown icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="four wide column">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href="/album1" target="_blank" class="ui spaced image">
-                        <img src="/static/images/android_hands.jpg">
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/album1" target="_blank">
-                            <i class="brown icon grid layout"></i> Exebit 14
-                            <div class="floating ui red label">22 pics</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--  -->
-    </div>
 </div>
-<script src="/static/facebook.js"></script>
-{% endblock %}
+</div>
+</div>
+
+ {% endblock %}
