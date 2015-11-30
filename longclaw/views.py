@@ -597,6 +597,17 @@ def problems(id):
         return render_template('404.html'), 404
     return render_template('problems.html', problem=cursor.items[0], login_user=user), 200
 
+@app.route('/select/', methods=['GET'])
+@admin_required
+def select():
+    try:
+        user = get_user_from_auth(request.cookies['auth_key'])
+        # return redirect('/')
+    except:
+        user = ''
+    return render_template('select.html', login_user=user), 200
+
+    
 
 @app.route('/add_problem/', methods=['GET', 'POST'])
 @admin_required
