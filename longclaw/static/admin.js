@@ -1,4 +1,3 @@
-
 var adminapp = angular.module("admin", ["ngCookies"]);
 adminapp.controller("adminctrl", ['$scope', '$http', '$element', '$cookies',
     function($scope, $http, $element, $cookies) {
@@ -35,7 +34,7 @@ adminapp.controller("adminctrl", ['$scope', '$http', '$element', '$cookies',
                     $cookies.put('admin_key', data['admin_key'], {
                         'path': '/'
                     });
-                    $(location).attr('href', '/add_problem');
+                    $(location).attr('href', '/select');
                 }
 
             });
