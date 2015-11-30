@@ -26,7 +26,7 @@ def test():
     return render_template('test.html')
 
 
-def authenticate_webkiosk(enroll, passwd):
+def authenticate_webkiosk(enroll, passwd, dob):
     try:
         check = requests.get(
             'https://webkiosk.jiit.ac.in/CommonFiles/UserActionn.jsp?' +
@@ -36,6 +36,8 @@ def authenticate_webkiosk(enroll, passwd):
             'UserType=S&' +
             'txtCode=Enrollment+No&' +
             'MemberCode=' + enroll +
+            '&DOB=DOB' +
+            '&DATE1=' + dob + 
             '&txtPin=Password%2FPin&' +
             'Password=' + passwd +
             '&BTNSubmit=Submit',
@@ -148,6 +150,7 @@ def signup():
     elif request.method == 'POST':
         form_data = json.loads(request.data)
         try:
+	    dob = form_data['dob']
             fname = form_data['fname']
             lname = form_data['lname']
             email = form_data['email']
@@ -197,7 +200,7 @@ def signup():
         if cpasswd != passwd:
             return response_msg('error', 'Passwords do not match')
 
-        if not authenticate_webkiosk(enroll, wbpass):
+        if not authenticate_webkiosk(enroll, wbpass, dob):
             return response_msg('error', 'Webkiosk authentication faiiled')
 
         if key:
