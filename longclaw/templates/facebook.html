@@ -1,31 +1,29 @@
 {% extends "parent.html" %} {% block child %}
-
-
 <div ng-controller="fbalbum">
-
-<div class="ui top attached active tab segment">
-    <!-- <div class="ui top attached active tab segment" ng-controller="fbCtrl"> -->
-    <div class="ui  grid">
-    <div class="four wide column" ng-repeat="album in albums">
-            <div class="ui container">
-                <div class="ui stacked  segment">
-                    <a href={{ album.link | angular }} >
-                        <img src="{{ album.cpic | angular }}" height=200 width=225>
-
-                    </a>
-                </div>
-                <div class="ui center aligned container">
-                    <div class="ui compact menu">
-                        <a class="item" href="/facebook/album/" >
-                            <i class="large purple   icon grid layout"></i> {{album.name | angular}}
-                            <div class="floating ui red label">{{ album.num | angular }} pics</div>
+    <div class="ui top attached active tab segment">
+        <!-- <div class="ui top attached active tab segment" ng-controller="fbCtrl"> -->
+        <div class="ui  grid">
+            <div class="four wide column" ng-repeat="album in albums">
+                <div class="ui container">
+                    <div class="ui stacked  segment">
+                        <a href={{ album.link | angular }}>
+                            <img src="{{ album.cpic | angular }}" height=200 width=225>
                         </a>
+                    </div>
+                    <div class="ui center aligned container">
+                        <div class="ui compact menu">
+                            <a class="item" href="/facebook/album/">
+                                <i class="large purple   icon grid layout"></i> {{album.name | angular}}
+                                <div class="floating ui red label">{{ album.num | angular }} pics</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
-</div>
-</div>
-
- {% endblock %}
+<script type="text/javascript">
+$('#facebook').addClass('active item');
+</script>
+{% endblock %}

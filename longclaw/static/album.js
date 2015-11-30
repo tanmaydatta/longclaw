@@ -94,7 +94,6 @@ knuth1.directive('onFinishRender', function($timeout) {
 ]);
 
 
-$('#facebook').addClass('active item');
 
 
 

@@ -1,49 +1,49 @@
 {% extends "parent.html" %} {% block child %}
-    <meta name="keywords" content="css3, experiment, 3d, unfolding, fold, paper, component, element, web design, jquery, plugin, perspective" />
-    <link rel="shortcut icon" href="/static/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/static/demo.css" />
-    <link rel="stylesheet" type="text/css" href="/static/pfold.css" />
-    <link rel="stylesheet" type="text/css" href="/static/custom2.css" />
-    <script type="text/javascript" src="/static/modernizr.custom.79639.js"></script>
-    <div class="ui active tab raised segment">
-        <a class="ui labeled icon violet vertical animated button" tabindex="0" href="/facebook/">
-            <i class="chevron circle left icon"></i>
-            <div class="hidden content">
-                <i class="photo icon"></i>
-            </div>
-            <div class="visible content">
-                Back To Album
-            </div>
-        </a>
-        <script type="text/javascript">
-        var hell={{ album_id }};
-        
-        </script>
-        <div ng-controller="album" >
-            <div class="two column ui grid">
-                <div class="sixteen wide compact column">
-                    <section class="main demo-2">
+<meta name="keywords" content="css3, experiment, 3d, unfolding, fold, paper, component, element, web design, jquery, plugin, perspective" />
+<link rel="shortcut icon" href="/static/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/static/demo.css" />
+<link rel="stylesheet" type="text/css" href="/static/pfold.css" />
+<link rel="stylesheet" type="text/css" href="/static/custom2.css" />
+<script type="text/javascript" src="/static/modernizr.custom.79639.js"></script>
+<div class="ui active tab raised segment">
+    <a class="ui labeled icon violet vertical animated button" tabindex="0" href="/facebook/">
+        <i class="chevron circle left icon"></i>
+        <div class="hidden content">
+            <i class="photo icon"></i>
+        </div>
+        <div class="visible content">
+            Back To Album
+        </div>
+    </a>
+    <script type="text/javascript">
+    var hell = {
+        {
+            album_id
+        }
+    };
+    </script>
+    <div ng-controller="album">
+        <div class="two column ui grid">
+            <div class="sixteen wide compact column">
+                <section class="main demo-2">
                     <div id="grid" class="grid clearfix">
-                    
-                    <div ng-repeat="image in images" id="repeat" on-finish-render="ngRepeatFinished">
-                        <div class="uc-container">
-                            <div class="uc-initial-content">
-                                <img src="{{ image.pic | angular }}" height=175 width=210 alt="image03" />
-                                <span class="icon-eye"></span>
-                            </div>
-                            <div class="uc-final-content">
-                                <img src="{{ image.pic | angular }}" height=400 width=550 alt="image03-large" />
-                                <span class="icon-cancel"></span>
+                        <div ng-repeat="image in images" id="repeat" on-finish-render="ngRepeatFinished">
+                            <div class="uc-container">
+                                <div class="uc-initial-content">
+                                    <img src="{{ image.pic | angular }}" height=175 width=210 alt="image03" />
+                                    <span class="icon-eye"></span>
+                                </div>
+                                <div class="uc-final-content">
+                                    <img src="{{ image.pic | angular }}" height=400 width=550 alt="image03-large" />
+                                    <span class="icon-cancel"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    </div>
-                    </section>
-                    
-                </div>
+                </section>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/static/jquery.pfold.js"></script>
-    
+</div>
+<script type="text/javascript" src="/static/jquery.pfold.js"></script>
 {% endblock %}
