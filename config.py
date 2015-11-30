@@ -10,6 +10,7 @@ rds = Redis()
 
 DEFAULT_PIC = 'https://github.com/identicons/'
 FB_APP_ID = 122742198082740
+FB_APP_SECRET = "8474009531f56532cf1e194df6afd53d"
 
 CAPTCHA_SECRET = '6LesFgwTAAAAAIy1YjMlYaWJ27QbqXP4Sm3tcDpI'
 

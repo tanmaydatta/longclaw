@@ -14,6 +14,7 @@ from cors import *
 import math
 from bs4 import BeautifulSoup
 import re
+
 #from flask.ext.mail import Message
 #from mail_config import *
 #from longclaw import mail
@@ -26,7 +27,7 @@ def test():
     return render_template('test.html')
 
 
-def authenticate_webkiosk(enroll, passwd):
+def authenticate_webkiosk(enroll, passwd, dob):
     try:
         check = requests.get(
             'https://webkiosk.jiit.ac.in/CommonFiles/UserActionn.jsp?' +
@@ -36,6 +37,8 @@ def authenticate_webkiosk(enroll, passwd):
             'UserType=S&' +
             'txtCode=Enrollment+No&' +
             'MemberCode=' + enroll +
+            '&DOB=DOB' +
+            '&DATE1=' + dob + 
             '&txtPin=Password%2FPin&' +
             'Password=' + passwd +
             '&BTNSubmit=Submit',
@@ -148,6 +151,7 @@ def signup():
     elif request.method == 'POST':
         form_data = json.loads(request.data)
         try:
+	    dob = form_data['dob']
             fname = form_data['fname']
             lname = form_data['lname']
             email = form_data['email']
@@ -197,7 +201,7 @@ def signup():
         if cpasswd != passwd:
             return response_msg('error', 'Passwords do not match')
 
-        if not authenticate_webkiosk(enroll, wbpass):
+        if not authenticate_webkiosk(enroll, wbpass, dob):
             return response_msg('error', 'Webkiosk authentication faiiled')
 
         if key:
@@ -551,7 +555,11 @@ def facebook():
         # return redirect('/')
     except:
         user = ''
-    return render_template('facebook.html', login_user=user), 200
+    try:
+        access_token = rds.get('access_token')
+    except:
+        access_token = ''
+    return render_template('facebook.html', login_user=user, access_token=access_token), 200
 
 @app.route('/facebook/album/<id>/', methods=['GET'])
 def album(id):
@@ -560,7 +568,11 @@ def album(id):
         # return redirect('/')
     except:
         user = ''
-    return render_template('album.html', login_user=user, album_id=id), 200
+    try:
+        access_token = rds.get('access_token')
+    except:
+        access_token = ''
+    return render_template('album.html', login_user=user, album_id=id, access_token=access_token), 200
 
 # @app.route('/facebook/album/<page>/', methods=['GET'])
 # def album(page):
@@ -605,7 +617,7 @@ def select():
         # return redirect('/')
     except:
         user = ''
-    return render_template('select.html', login_user=user), 200
+    return render_template('select.html', login_user=user, app_id=FB_APP_ID), 200
 
     
 
@@ -1018,3 +1030,18 @@ def sync_ratings():
             print 'error' + user['username']
 
     return response_msg('sucess', 'OK')
+
+@app.route("/admin/access_token/", methods=['POST'])
+def sync_access_token():
+    # import ipdb; ipdb.set_trace()
+    form_data = json.loads(request.data)
+    access_token = form_data['access_token']
+    long_lived_url = ("https://graph.facebook.com/oauth/access_token?"
+        "client_id=" + str(FB_APP_ID) + "&client_secret=" + FB_APP_SECRET + 
+        "&grant_type=fb_exchange_token&fb_exchange_token=" + access_token)
+    long_lived_resp = requests.get(long_lived_url).text
+    long_lived_token = long_lived_resp.split('&')[0].split('=')[1]
+    if rds.set('access_token', long_lived_token):
+        return response_msg('success', 'OK')
+    else:
+        return response_msg('error', 'could not connect to redis server')
