@@ -1,7 +1,7 @@
-$('#problems').addClass('active item');
 $('table').tablesort();
 $('.ui.sticky')
     .sticky({
+         offset : 50,
         context: '#stick'
     });
 $('.dropdown')
