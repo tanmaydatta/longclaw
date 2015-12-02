@@ -18,16 +18,13 @@
                     </tr>
                 </thead>
                 <tbody ng-repeat="student in students">
- <!-- {#                     { % for i in range(0,99) % } #}  -->
-                     <!-- {% for student in students %}  -->
                     <tr>
-                        <td>{{ student.name }}</td>
-                        <td>{{ student.lrating }}</td>
-                        <td>{{ student.srating }}</td>
-                        <td>{{ student.cfrating }}</td>
-                        <td>{{ student.colg_rating }}</td>
+                        <td>{{ student.username | angular }}</td>
+                        <td>{{ student.lrating  | angular }}</td>
+                        <td>{{ student.srating | angular }}</td>
+                        <td>{{ student.cfrating | angular }}</td>
+                        <td>{{ student.colg_rating | angular }}</td>
                     </tr>
-                    <!-- {% endfor %} -->
     
                 </tbody>
             </table>

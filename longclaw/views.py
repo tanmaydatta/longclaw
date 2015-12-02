@@ -545,8 +545,9 @@ def all_ratings():
     # import ipdb; ipdb.set_trace()
     try:
         connection = get_rdb_conn()
-        cursor = rdb.db(TODO_DB).table('user').pluck(
-            "srating", "lrating", "cfrating", "colg_rating", "name"
+        cursor = rdb.db(TODO_DB).table('user').filter(
+            rdb.row["username"] != "admin").pluck(
+            "srating", "lrating", "cfrating", "colg_rating", "username"
             ).run(connection)
     except:
         return response_msg('error', 'could not connect to db')
