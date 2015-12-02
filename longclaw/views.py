@@ -546,7 +546,7 @@ def all_ratings():
     try:
         connection = get_rdb_conn()
         cursor = rdb.db(TODO_DB).table('user').pluck(
-            "srating", "lrating", "cfrating", "colg_rating"
+            "srating", "lrating", "cfrating", "colg_rating", "name"
             ).run(connection)
     except:
         return response_msg('error', 'could not connect to db')
