@@ -17,3 +17,10 @@ $('.ui.sticky')
     .sticky({
         context: '#aa'
     });
+
+var app = angular.module('knuth', []);
+app.controller('ratingsCtrl', function($scope, $http) {
+	var url="";
+    $http.get(url)
+    .then(function (response) {$scope.students = response.data.array;});
+});

@@ -43,7 +43,7 @@
                         <div class="sub header">*For detailed rankings, visit Ratings Tab</div>
                       </div>
                      </h2>
-                    <table class="ui  celled selectable three column purple table">
+                    <table class="ui  celled selectable three column purple table" ng-controller="ratingsCtrl">
                         <!--                         <thead>
                             <tr>
                                 <th colspan="3">
@@ -61,14 +61,14 @@
                                 <th>Overall Rating </th>
                             </tr>
                         </thead>
-                        <tbody class="students">
-                            {# % for i in range(0,9) % #}
+                        <tbody  ng-repeat="student in students">
+                            <!-- {# % for i in range(0,9) % #} -->
                             <tr>
-                                <td>{#{ i+1 }#}</td>
+                                <td>{{ student.rank }}</td>
                                 <td>{{ student.name }}</td>
                                 <td>{{ student.ov_rating }}</td>
                             </tr>
-                            {# % endfor % #}
+                            <!-- {# % endfor % #} -->
                             <tr>
                                 <td>1</td>
                                 <td>Abhinav Fauzdar</td>
