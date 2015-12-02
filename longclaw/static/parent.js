@@ -42,26 +42,35 @@ var knuth = angular.module("knuth", ['ngCookies']);
 knuth.controller("signout", ['$scope', '$cookies',
     function($scope, $cookies) {
         $scope.signout = function() {
-                $cookies.remove('auth_key', {
-                    'path': '/'
-                });
-                location.reload();
-            }
-            // $scope.content="hello";
-            // $scope.content = $scope.content + 'vvv';
+            $cookies.remove('auth_key', {
+                'path': '/'
+            });
+            location.reload();
+        }
+        // $scope.content="hello";
+        // $scope.content = $scope.content + 'vvv';
     }
 ]);
 
 // <script type="text/javascript">
-  
-  knuth.controller("markdown", ['$scope',
-      function($scope) {
-          $scope.toHTML = function() {
-              $('#m2html').text('');
-              $('#m2html').append(markdown.toHTML($scope.content));
-          }
-          // $scope.content="hello";
-          // $scope.content = $scope.content + 'vvv';
-      }
-  ]);
-  // </script>
+
+knuth.controller("markdown", ['$scope',
+    function($scope) {
+        $scope.toHTML = function() {
+            $('#m2html').text('');
+            $('#m2html').append(markdown.toHTML($scope.content));
+        }
+        // $scope.content="hello";
+        // $scope.content = $scope.content + 'vvv';
+    }
+]);
+// </script>
+
+knuth.controller('ratingsCtrl', function($scope, $http) {
+    var url="http://knuth-jiit.me/all_ratings/";
+    $http.get(url)
+        .then(function(response) {
+            console.log(response);
+            $scope.students = response.data.users;
+        });
+});

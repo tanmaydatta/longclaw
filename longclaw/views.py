@@ -529,6 +529,7 @@ def about():
         user = ''
     return render_template('about_us.html', login_user=user), 200
 
+
 @app.route('/ratings/', methods=['GET'])
 def ratings():
     try:
@@ -539,6 +540,20 @@ def ratings():
     return render_template('ratings.html', login_user=user), 200
 
 
+@app.route('/all_ratings/', methods=['GET'])
+def all_ratings():
+    # import ipdb; ipdb.set_trace()
+    try:
+        connection = get_rdb_conn()
+        cursor = rdb.db(TODO_DB).table('user').pluck(
+            "srating", "lrating", "cfrating", "colg_rating"
+            ).run(connection)
+    except:
+        return response_msg('error', 'could not connect to db')
+
+    return response_msg('success', 'OK', users=cursor.items)
+
+
 @app.route('/discuss/', methods=['GET'])
 def discuss():
     try:
@@ -547,6 +562,7 @@ def discuss():
     except:
         user = ''
     return render_template('discuss.html', login_user=user), 200
+
 
 @app.route('/facebook/', methods=['GET'])
 def facebook():

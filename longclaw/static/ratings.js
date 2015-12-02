@@ -1,12 +1,8 @@
 $('#ratings').addClass("active item");
 
-var app = angular.module('knuth', []);
+// var app = angular.module('knuth', []);
 
-app.controller('ratingsCtrl', function($scope, $http) {
-	var url="";
-    $http.get(url)
-    .then(function (response) {$scope.students = response.data.array;});
-});
+
 
 $('#table').DataTable();
 
