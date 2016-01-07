@@ -1,3 +1,4 @@
+$('#problems').addClass("active item");
 $('table').tablesort();
 $('.ui.sticky')
     .sticky({

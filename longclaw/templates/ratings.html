@@ -1,8 +1,8 @@
 {% extends "parent.html" %} {% block child %}
 <div class="ui top attached active tab segment" style="font-family:'Arial'">
     <div class="ui grid container">
-        <div class="<!-- twelve --> sixteen wide column">
-            <table id="table" class="ui sortable selectable padded celled teal table" ng-controller="ratingsCtrl">
+        <div class=" sixteen wide column">
+            <table id="table" class="ui sortable selectable padded celled teal table" >
                 <thead>
                     <tr>
                         <!-- <th>Rank</th> -->
@@ -17,28 +17,66 @@
                             <br>Rating</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="student in students">
+                <tbody >
                     <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>63</td>
+                        <td>2011/07/25</td>
+                    </tr>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>63</td>
+                        <td>2011/07/25</td>
+                    </tr>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>63</td>
+                        <td>2011/07/25</td>
+                    </tr>
+                    <!--                     <tr>
                         <td><a href="/profile/{{ student.username | angular }}/"> {{ student.username | angular }}</a></td>
                         <td>{{ student.lrating  | angular }}</td>
                         <td>{{ student.srating | angular }}</td>
                         <td>{{ student.cfrating | angular }}</td>
                         <td>{{ student.colg_rating | angular }}</td>
                     </tr>
-    
+ -->
                 </tbody>
             </table>
-            </div>
-                <div class="ui right aligned container">
-                    {% if True %}
-                    <a  href="/ratings/{#{i+1}#}" >View previous 100 rows...</a>
-                    {% endif %}
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {% if True %}
-                   <a  href="/ratings/{#{i-1}#} " >View next 100 rows...</a> 
-                    {% endif %}                                
-                </div>
-                <!-- <tfoot>
+        </div>
+        <!-- <div class="ui right aligned container">
+            {% if True %}
+            <a href="/ratings/{#{i+1}#}">View previous 100 rows...</a> {% endif %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {% if True %}
+            <a href="/ratings/{#{i-1}#} ">View next 100 rows...</a> {% endif %}
+        </div> -->
+        <!-- <tfoot>
                     <tr>
                         <th colspan="6">
                             <div class="ui  pagination menu">
@@ -47,10 +85,10 @@
                                 </a>
                                 {% for i in range(0,5) %}
                                 <a href="/ratings/page/{{i+1}}" class="item">{{i+1}}</a> {% endfor %} -->
-                <!-- <a class="item">2</a> -->
-                <!-- <a class="item">3</a> -->
-                <!-- <a class="item">4</a> -->
-                <!--    <a class="icon item" href="">
+        <!-- <a class="item">2</a> -->
+        <!-- <a class="item">3</a> -->
+        <!-- <a class="item">4</a> -->
+        <!--    <a class="icon item" href="">
                                     <i class="right chevron icon"></i>
                                 </a>
                             </div>
@@ -150,17 +188,17 @@
                                 {% for i in range(0,5) %}
                                 <a href="/ratings/page/{{i+1}}" class="item">{{i+1}}</a> {% endfor %}
                                 <!-- <a class="item">2</a> -->
-                <!-- <a class="item">3</a> -->
-                <!-- <a class="item">4</a> -->
-                <!--            <a class="icon item" href="">
+        <!-- <a class="item">3</a> -->
+        <!-- <a class="item">4</a> -->
+        <!--            <a class="icon item" href="">
                                     <i class="right chevron icon"></i>
                                 </a>
                             </div>
                         </th>
                     </tr>
                 </tfoot> -->
-            <!-- </table>
-        </div> --> 
+        <!-- </table>
+        </div> -->
     </div>
 </div>
 <script src="/static/ratings.js"></script>

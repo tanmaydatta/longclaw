@@ -12,9 +12,8 @@ linebreak = document.createElement("br");
 table_filter.appendChild(linebreak);
 
 // var TextInside = ctrl.getElementsByTagName('label')[0].innerHTML;
-var TextInside = $( "label" ).text();
+var TextInside = $("label").text();
 console.log(TextInside);
 TextInside.bold();
 // alert("af");
 // document.getElementById(table_filter).style.fontWeight = 'bold';
-

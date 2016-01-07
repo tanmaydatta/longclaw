@@ -1,47 +1,36 @@
-{% extends "base_profile.html" %}
-{% block head %}
-  
-{% endblock %}
-{% block body %}
-  <div id="blog" class="ui top attached active tab segment">
+{% extends "base_profile.html" %} {% block head %} {% endblock %} {% block body %}
+<div id="blog" class="ui top attached active tab segment">
     <div class="ui form" ng-controller="markdown">
-      <div class="field">
-        <div class="ui label">Blog Title
-          <i class="big newspaper icon"></i>
+        <div class="field">
+            <div class="ui label">Blog Title
+                <i class="big newspaper icon"></i>
+            </div>
+            <textarea rows="2"></textarea>
         </div>
-        <textarea rows="2"></textarea>
-      </div>
-      <div class="ui segment">
-        <a target="_blank" class="ui teal right ribbon large label" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Supports Markdown</a>
-        <div class="ui  top left attached label">Content
-          <i class="big edit icon"></i>
+        <div class="ui segment">
+            <a target="_blank" class="ui teal right ribbon large label" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Supports Markdown</a>
+            <div class="ui  top left attached label">Content
+                <i class="big edit icon"></i>
+            </div>
+            <textarea rows="12" ng-model="content" ng-change="toHTML()">Markdown content:&#13;&#10;# H1&#13;&#10; ## H2&#13;&#10;
+                <http://www.example.com> &#13;&#10;~~Mistaken text.~~&#13;&#10;```python s = "Python syntax highlighting" print s ```
+            </textarea>
         </div>
-        <textarea rows="12" ng-model="content" ng-change="toHTML()" >Markdown content:&#13;&#10;# H1&#13;&#10;
-## H2&#13;&#10; <http://www.example.com> &#13;&#10;~~Mistaken text.~~&#13;&#10;```python
-s = "Python syntax highlighting"
-print s
-```
- </textarea>
-      </div>
-      <div class="ui raised segment" id="m2html">
-        
-      </div>
-      
+        <div class="ui raised segment" id="m2html">
+        </div>
     </div>
-  </div>
-  <br>
-  <div class="ui medium buttons" tabindex="0">
-    <button class="ui labeled icon green submit button" tabindex="0">
-    <i class="left external icon"></i>
-    Post
-    </button>
-    <button class="ui button red" tabindex="0">
-    <i class="strikethrough icon"></i>
-    Discard
-    </button>
-  </div>
+    <div class="ui medium buttons" tabindex="0">
+        <button class="ui labeled icon green submit button" tabindex="0">
+            <i class="left external icon"></i> Post
+        </button>
+        <button class="ui button red" tabindex="0">
+            <i class="strikethrough icon"></i> Discard
+        </button>
+    </div>
 </div>
-<br><br>
+<br>
+<br>
+<br>
 <script type="text/javascript">
 $('#new_blog_tab').addClass('active');
 </script>
