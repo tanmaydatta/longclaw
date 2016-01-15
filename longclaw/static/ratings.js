@@ -1,4 +1,4 @@
-$('#ratings').addClass("active item");
+
 
 // var app = angular.module('knuth', []);
 

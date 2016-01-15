@@ -1,4 +1,3 @@
-$('#facebook').addClass('active item');
 
 var knuth1 = angular.module('knuth');
 knuth.controller('fbalbum', ['$scope', '$http', function($scope, $http) {
