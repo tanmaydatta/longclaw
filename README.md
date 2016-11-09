@@ -1,7 +1,7 @@
 # Longclaw
 Web App for JIIT Programming Hub.
 # JIIT Programming Hub
-##Link for presentation: http://knuth-jiit.me/
+[](##Link for presentation: http://knuth-jiit.me/)
 # Technologies used:
 
 
