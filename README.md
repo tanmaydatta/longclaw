@@ -1,12 +1,12 @@
 # Longclaw
 Web App for JIIT Programming Hub.
 # JIIT Programming Hub
-##Link for presentation: http://knuth-jiit.me/
+##Link for presentation: http://159.203.102.39/
 # Technologies used:
 
 
 + Python ( Flask web framework ) for creating API.
-+ RethinkDB as the primary database.
++ MongoDB as the primary database.
 + Redis -  a key-value in-memory data storage.
 + Semantic UI
 + Angular JS & jQuery. 
