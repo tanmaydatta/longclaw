@@ -1,3 +1,4 @@
+
 $('#home').addClass('active item');
 $('.menu .item')
     .tab();

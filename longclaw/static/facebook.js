@@ -5,7 +5,7 @@
       var fb = "https://graph.facebook.com/v2.5/";
 
       var gidd = 333283916693071;
-      // var access = "CAACEdEose0cBAC57PdSuHcgme875LdubnEdrkaq4QvHsRZBooqrZAkDxjgR1G9Uxw4LJe9BAHivNij4lxAUZCZAJY2UWEKhuADOWoq5Vj2jaySdlcF0DvYxCFYD0fZBHC7mhyn6L7jKpgZAcJ77bUAbGFDSiNiOzvcHIZAZAtxINX7UioaW0OKSwHZCZCWfXn5UNqYpPCDstKwb2u7tRFE484r";
+       var access = "CAACEdEose0cBAC57PdSuHcgme875LdubnEdrkaq4QvHsRZBooqrZAkDxjgR1G9Uxw4LJe9BAHivNij4lxAUZCZAJY2UWEKhuADOWoq5Vj2jaySdlcF0DvYxCFYD0fZBHC7mhyn6L7jKpgZAcJ77bUAbGFDSiNiOzvcHIZAZAtxINX7UioaW0OKSwHZCZCWfXn5UNqYpPCDstKwb2u7tRFE484r";
       $scope.accesstoken = access;
       var url = fb + gidd + "/albums?access_token=" + access;
       $http.get(url)

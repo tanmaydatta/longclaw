@@ -36,7 +36,7 @@ $('#context2 .menu .item')
 // });
 
 
-// var app_id = "{{app_id}}";
+ var app_id = "{{app_id}}";
 
 var knuth = angular.module("knuth", ['ngCookies']);
 knuth.controller("signout", ['$scope', '$cookies',

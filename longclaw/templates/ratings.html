@@ -17,7 +17,7 @@
                             <br>Rating</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="student in students">
+                <tbody ng-repeat="student in students | orderBy:'-colg_rating'">
                     <tr>
                         <td><a href="/profile/{{ student.username | angular }}/"> {{ student.username | angular }}</a></td>
                         <td>{{ student.lrating  | angular }}</td>
@@ -29,7 +29,7 @@
                 </tbody>
             </table>
             </div>
-                <div class="ui right aligned container">
+                <!--<div class="ui right aligned container">
                     {% if True %}
                     <a  href="/ratings/{#{i+1}#}" >View previous 100 rows...</a>
                     {% endif %}
@@ -37,7 +37,7 @@
                     {% if True %}
                    <a  href="/ratings/{#{i-1}#} " >View next 100 rows...</a> 
                     {% endif %}                                
-                </div>
+                </div> -->
                 <!-- <tfoot>
                     <tr>
                         <th colspan="6">
@@ -163,5 +163,6 @@
         </div> --> 
     </div>
 </div>
+<br><br><br><br>
 <script src="/static/ratings.js"></script>
 {% endblock %}
