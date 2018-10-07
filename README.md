@@ -1,2 +1,2 @@
 # longclaw
-Official website for JIIT Programming Hub.
+Official website of the JIIT Programming Hub.
